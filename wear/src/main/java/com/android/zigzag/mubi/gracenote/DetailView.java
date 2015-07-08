@@ -153,7 +153,7 @@ class DetailView {
 		 }		 
 
 		 String artistImageUrl = album.artist().contributor().image().asset(GnImageSize.kImageSizeSmall).url();
-		 gracenoteMusicID.loadAndDisplayCoverArt(artistImageUrl, (ImageView) artistBio.findViewById(R.id.artistImage));
+//		 gracenoteMusicID.loadAndDisplayCoverArt(artistImageUrl, (ImageView) artistBio.findViewById(R.id.artistImage));
 			 
 		ScrollView v = (ScrollView) artistBio.findViewById(R.id.artistBioScroller);
 		v.setMinimumHeight(detailPopup.getHeight() - 200);
@@ -210,7 +210,7 @@ class DetailView {
 		});
 		
 		String imageUrl = album.coverArt().asset(GnImageSize.kImageSizeSmall).url();
-		gracenoteMusicID.loadAndDisplayCoverArt(imageUrl, (ImageView) albumReview.findViewById(R.id.albumReviewImage));
+//		gracenoteMusicID.loadAndDisplayCoverArt(imageUrl, (ImageView) albumReview.findViewById(R.id.albumReviewImage));
 											 		
 	}
 		

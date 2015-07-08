@@ -153,7 +153,7 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
         // Create MessageListener that receives messages sent from a wearable
         messageListener = new MessageApi.MessageListener() {
             @Override
-            public void onMessageReceived(MessageEvent messageEvent) {
+            public void onMessageReceived(final MessageEvent messageEvent) {
                 Log.d( TAG, "onMessageReceived (before): " + messageEvent );
                 if (messageEvent.getPath().equals(MESSAGE_PATH)) {
                     handler.post(new Runnable() {
@@ -164,7 +164,9 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
                             Long tsLong = System.currentTimeMillis()/1000;
                             String ts = tsLong.toString();
 
-                            receivedMessagesEditText.append("\n" + getString(R.string.received_message) + " " + ts );
+
+                            String result = new String(messageEvent.getData());
+                            receivedMessagesEditText.append("\n" + getString(R.string.received_message) + " " + ts +"\n"+ result +"\n" );
                         }
                     });
                 }

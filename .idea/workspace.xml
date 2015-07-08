@@ -27,7 +27,16 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <projects_view />
+        <projects_view>
+          <tree_state>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+            </PATH>
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
@@ -46,39 +55,64 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GracenoteMusicID.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GracenoteMusicID.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/GracenoteMusicID.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.34708393">
-              <caret line="236" column="39" selection-start-line="236" selection-start-column="39" selection-end-line="236" selection-end-column="39" />
+            <state vertical-scroll-proportion="-6.970588">
+              <caret line="415" column="0" selection-start-line="415" selection-start-column="0" selection-end-line="415" selection-end-column="0" />
               <folding>
-                <element signature="e#5606#5617#0" expanded="true" />
-                <element signature="e#5681#5696#0" expanded="true" />
-                <element signature="e#5764#5781#0" expanded="true" />
-                <element signature="e#10359#10905#0" expanded="true" />
-                <element signature="e#10460#10879#0" expanded="true" />
-                <element signature="e#10497#10527#0" expanded="true" />
-                <element signature="e#10878#10879#0" expanded="true" />
-                <element signature="e#10904#10905#0" expanded="true" />
-                <element signature="method#createUI#0;class#GracenoteMusicID#0" expanded="false" />
-                <element signature="e#12679#13142#0" expanded="true" />
-                <element signature="e#13141#13142#0" expanded="true" />
-                <element signature="e#13319#13416#0" expanded="true" />
-                <element signature="e#13415#13416#0" expanded="true" />
-                <element signature="e#13762#14061#0" expanded="true" />
-                <element signature="e#14060#14061#0" expanded="true" />
-                <element signature="class#AudioVisualizeAdapter#0;class#GracenoteMusicID#0" expanded="false" />
-                <element signature="method#getData#0;class#AudioVisualizeAdapter#0;class#GracenoteMusicID#0" expanded="false" />
-                <element signature="class#LocaleLoadRunnable#0;class#GracenoteMusicID#0" expanded="false" />
-                <element signature="e#18900#18901#0" expanded="true" />
-                <element signature="e#18931#18932#0" expanded="true" />
-                <element signature="e#22540#22628#0" expanded="true" />
-                <element signature="e#22627#22628#0" expanded="true" />
-                <element signature="e#24999#25000#0" expanded="true" />
-                <element signature="e#25053#25054#0" expanded="true" />
-                <element signature="e#32670#32821#0" expanded="true" />
-                <element signature="e#32820#32821#0" expanded="true" />
+                <element signature="e#5790#5801#0" expanded="true" />
+                <element signature="e#5865#5880#0" expanded="true" />
+                <element signature="e#5948#5965#0" expanded="true" />
+                <element signature="e#10907#10908#0" expanded="true" />
+                <element signature="e#10966#10967#0" expanded="true" />
+                <element signature="e#11045#11046#0" expanded="true" />
+                <element signature="e#11093#11094#0" expanded="true" />
+                <element signature="e#11713#11749#0" expanded="true" />
+                <element signature="class#11998:13649" expanded="false" />
+                <element signature="e#13803#14349#0" expanded="true" />
+                <element signature="e#13904#14323#0" expanded="true" />
+                <element signature="e#13941#13971#0" expanded="true" />
+                <element signature="e#14322#14323#0" expanded="true" />
+                <element signature="e#14348#14349#0" expanded="true" />
+                <element signature="method#onResume#0;class#GracenoteMusicID#0" expanded="false" />
+                <element signature="method#onPause#0;class#GracenoteMusicID#0" expanded="false" />
+                <element signature="class#MusicIDEvents#0;class#GracenoteMusicID#0" expanded="false" />
+                <element signature="class#LocalBundleIngestRunnable#0;class#GracenoteMusicID#0" expanded="false" />
+                <element signature="e#19001#19002#0" expanded="true" />
+                <element signature="e#19032#19033#0" expanded="true" />
+                <element signature="class#SystemEvents#0;class#GracenoteMusicID#0" expanded="false" />
+                <element signature="method#getAssetAsString#0;class#GracenoteMusicID#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SendMessageToWear.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/SendMessageToWear.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.660787">
+              <caret line="358" column="13" selection-start-line="358" selection-start-column="13" selection-end-line="358" selection-end-column="13" />
+              <folding>
+                <element signature="e#6417#7427#0" expanded="true" />
+                <element signature="e#7188#7224#0" expanded="true" />
+                <element signature="e#7426#7427#0" expanded="true" />
+                <element signature="method#onCreateOptionsMenu#0;class#SendMessageToWear#0" expanded="false" />
+                <element signature="method#onResume#0;class#SendMessageToWear#0" expanded="false" />
+                <element signature="method#onPause#0;class#SendMessageToWear#0" expanded="false" />
+                <element signature="method#startIntentService#0;class#SendMessageToWear#0" expanded="false" />
+                <element signature="class#AddressResultReceiver#0;class#SendMessageToWear#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SendMessageToMobile.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/SendMessageToMobile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="59" column="47" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -2286,8 +2320,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/DatabaseAdapter.java" />
-        <option value="$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/GracenoteMusicID.java" />
         <option value="$PROJECT_DIR$/wear/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/DetailView.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/SendMessageToMobile.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/GracenoteMusicID.java" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/SendMessageToWear.java" />
       </list>
     </option>
   </component>
@@ -2340,6 +2377,24 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="wear" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mubiq" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wear" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mubi" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2406,6 +2461,28 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mubiq" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobile" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zigzag" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mubi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2582,7 +2659,7 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="R3AF601ALVD" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="05a83150f0dd803b" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_21_x86" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
@@ -2596,7 +2673,7 @@
       <recent name="C:\Users\zigzag\Documents\mubiq\wear\src\main\res\layout" />
     </key>
   </component>
-  <component name="RunManager" selected="Android Application.wear">
+  <component name="RunManager" selected="Android Application.mobile">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -2823,7 +2900,7 @@
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286495" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -2831,14 +2908,14 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286495" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3989071" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18605578" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988048" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2864,12 +2941,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/GracenoteMusicID.java</url>
-          <line>323</line>
+          <line>405</line>
           <properties />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/GracenoteMusicID.java</url>
-          <line>337</line>
+          <line>416</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
@@ -2896,14 +2973,6 @@
       </provider>
       <provider editor-type-id="android-designer">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/SendMessageToMobile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10742496">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/DatabaseAdapter.java">
@@ -2946,37 +3015,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/DetailView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35308343">
+          <caret line="213" column="24" selection-start-line="213" selection-start-column="24" selection-end-line="213" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/SendMessageToMobile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="59" column="47" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/GracenoteMusicID.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34708393">
-          <caret line="236" column="39" selection-start-line="236" selection-start-column="39" selection-end-line="236" selection-end-column="39" />
+        <state vertical-scroll-proportion="-6.970588">
+          <caret line="415" column="0" selection-start-line="415" selection-start-column="0" selection-end-line="415" selection-end-column="0" />
           <folding>
-            <element signature="e#5606#5617#0" expanded="true" />
-            <element signature="e#5681#5696#0" expanded="true" />
-            <element signature="e#5764#5781#0" expanded="true" />
-            <element signature="e#10359#10905#0" expanded="true" />
-            <element signature="e#10460#10879#0" expanded="true" />
-            <element signature="e#10497#10527#0" expanded="true" />
-            <element signature="e#10878#10879#0" expanded="true" />
-            <element signature="e#10904#10905#0" expanded="true" />
-            <element signature="method#createUI#0;class#GracenoteMusicID#0" expanded="false" />
-            <element signature="e#12679#13142#0" expanded="true" />
-            <element signature="e#13141#13142#0" expanded="true" />
-            <element signature="e#13319#13416#0" expanded="true" />
-            <element signature="e#13415#13416#0" expanded="true" />
-            <element signature="e#13762#14061#0" expanded="true" />
-            <element signature="e#14060#14061#0" expanded="true" />
-            <element signature="class#AudioVisualizeAdapter#0;class#GracenoteMusicID#0" expanded="false" />
-            <element signature="method#getData#0;class#AudioVisualizeAdapter#0;class#GracenoteMusicID#0" expanded="false" />
-            <element signature="class#LocaleLoadRunnable#0;class#GracenoteMusicID#0" expanded="false" />
-            <element signature="e#18900#18901#0" expanded="true" />
-            <element signature="e#18931#18932#0" expanded="true" />
-            <element signature="e#22540#22628#0" expanded="true" />
-            <element signature="e#22627#22628#0" expanded="true" />
-            <element signature="e#24999#25000#0" expanded="true" />
-            <element signature="e#25053#25054#0" expanded="true" />
-            <element signature="e#32670#32821#0" expanded="true" />
-            <element signature="e#32820#32821#0" expanded="true" />
+            <element signature="e#5790#5801#0" expanded="true" />
+            <element signature="e#5865#5880#0" expanded="true" />
+            <element signature="e#5948#5965#0" expanded="true" />
+            <element signature="e#10907#10908#0" expanded="true" />
+            <element signature="e#10966#10967#0" expanded="true" />
+            <element signature="e#11045#11046#0" expanded="true" />
+            <element signature="e#11093#11094#0" expanded="true" />
+            <element signature="e#11713#11749#0" expanded="true" />
+            <element signature="class#11998:13649" expanded="false" />
+            <element signature="e#13803#14349#0" expanded="true" />
+            <element signature="e#13904#14323#0" expanded="true" />
+            <element signature="e#13941#13971#0" expanded="true" />
+            <element signature="e#14322#14323#0" expanded="true" />
+            <element signature="e#14348#14349#0" expanded="true" />
+            <element signature="method#onResume#0;class#GracenoteMusicID#0" expanded="false" />
+            <element signature="method#onPause#0;class#GracenoteMusicID#0" expanded="false" />
+            <element signature="class#MusicIDEvents#0;class#GracenoteMusicID#0" expanded="false" />
+            <element signature="class#LocalBundleIngestRunnable#0;class#GracenoteMusicID#0" expanded="false" />
+            <element signature="e#19001#19002#0" expanded="true" />
+            <element signature="e#19032#19033#0" expanded="true" />
+            <element signature="class#SystemEvents#0;class#GracenoteMusicID#0" expanded="false" />
+            <element signature="method#getAssetAsString#0;class#GracenoteMusicID#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/SendMessageToWear.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.660787">
+          <caret line="358" column="13" selection-start-line="358" selection-start-column="13" selection-end-line="358" selection-end-column="13" />
+          <folding>
+            <element signature="e#6417#7427#0" expanded="true" />
+            <element signature="e#7188#7224#0" expanded="true" />
+            <element signature="e#7426#7427#0" expanded="true" />
+            <element signature="method#onCreateOptionsMenu#0;class#SendMessageToWear#0" expanded="false" />
+            <element signature="method#onResume#0;class#SendMessageToWear#0" expanded="false" />
+            <element signature="method#onPause#0;class#SendMessageToWear#0" expanded="false" />
+            <element signature="method#startIntentService#0;class#SendMessageToWear#0" expanded="false" />
+            <element signature="class#AddressResultReceiver#0;class#SendMessageToWear#0" expanded="false" />
           </folding>
         </state>
       </provider>
