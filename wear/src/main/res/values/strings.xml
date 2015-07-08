@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Mubi</string>
+
+    <string name="received_message">Message from mobile.</string>
+    <string name="received_messages">Received messages:</string>
+    <string name="send_message">Send msg to mobile.</string>
+    <string name="message_sent">Message from wear sent.</string>
+    <string name="error_message">Error sending message from wear.</string>
+    <string name="peer_connected">Peer connected.</string>
+    <string name="peer_disconnected">Peer disconnected.</string>
+</resources>
