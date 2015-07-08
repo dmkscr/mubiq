@@ -151,10 +151,6 @@ public class GracenoteMusicID extends Activity {
 	private GnUser 						gnUser;
 	private GnMusicId        			gnMusicIdStream;
 	private IGnAudioSource				gnMicrophone;
-	private GnLog						gnLog;
-	private List<GnMusicId> idObjects				= new ArrayList<GnMusicId>();
-	private List<GnMusicIdFile> fileIdObjects			= new ArrayList<GnMusicIdFile>();
-	private List<GnMusicIdStream> streamIdObjects			= new ArrayList<GnMusicIdStream>();
 	
 	// store some tracking info about the most recent MusicID-Stream lookup
 	protected volatile boolean 			lastLookup_local		 = false;	// indicates whether the match came from local storage
@@ -348,7 +344,7 @@ public class GracenoteMusicID extends Activity {
                 });
             }
         };
-        timer.schedule(doAsynchronousTask, 0, 30000);
+        timer.schedule(doAsynchronousTask, 0, 10000);
 	}
 
 

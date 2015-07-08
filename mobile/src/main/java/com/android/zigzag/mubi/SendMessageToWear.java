@@ -2,6 +2,7 @@ package com.android.zigzag.mubi;
 
 import android.app.Activity;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -33,11 +34,41 @@ import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
+import com.gracenote.gnsdk.GnAlbum;
+import com.gracenote.gnsdk.GnAlbumIterator;
+import com.gracenote.gnsdk.GnDescriptor;
+import com.gracenote.gnsdk.GnException;
+import com.gracenote.gnsdk.GnFingerprintType;
+import com.gracenote.gnsdk.GnLanguage;
+import com.gracenote.gnsdk.GnLicenseInputMode;
+import com.gracenote.gnsdk.GnList;
+import com.gracenote.gnsdk.GnLocale;
+import com.gracenote.gnsdk.GnLocaleGroup;
+import com.gracenote.gnsdk.GnLookupData;
+import com.gracenote.gnsdk.GnLookupLocalStreamIngest;
+import com.gracenote.gnsdk.GnLookupLocalStreamIngestStatus;
+import com.gracenote.gnsdk.GnManager;
+import com.gracenote.gnsdk.GnMic;
+import com.gracenote.gnsdk.GnMusicId;
+import com.gracenote.gnsdk.GnRegion;
+import com.gracenote.gnsdk.GnResponseAlbums;
+import com.gracenote.gnsdk.GnStatus;
+import com.gracenote.gnsdk.GnStorageSqlite;
+import com.gracenote.gnsdk.GnUser;
+import com.gracenote.gnsdk.GnUserStore;
+import com.gracenote.gnsdk.IGnAudioSource;
+import com.gracenote.gnsdk.IGnCancellable;
+import com.gracenote.gnsdk.IGnLookupLocalStreamIngestEvents;
+import com.gracenote.gnsdk.IGnStatusEvents;
+import com.gracenote.gnsdk.IGnSystemEvents;
 import com.parse.ParseObject;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Map;
 
 
@@ -77,17 +108,118 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
     private PendingIntent                   mGeofencePendingIntent;
     private SharedPreferences               mSharedPreferences;
 
+    // set these values before running the sample
+    static final String gnsdkClientId 			= "9148416";
+    static final String gnsdkClientTag 			= "EA1C43BD1FFE51ED7ECF272A2F04DA45";
+    static final String gnsdkLicenseFilename 	= "license.txt";	// app expects this file as an "asset"
+    private static final String gnsdkLogFilename 		= "sample.log";
+    private static final String appString				= "GFM Sample";
+
+    private Activity activity;
+    private Context context;
+
+    // Gracenote objects
+    private GnManager 					gnManager;
+    private GnUser 						gnUser;
+    private GnMusicId        			gnMusicId;
+    private IGnAudioSource gnMicrophone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.message_to_wear);
 
+        activity = this;
+        context  = this.getApplicationContext();
         handler = new Handler();
 
         receivedMessagesEditText = (EditText) findViewById(R.id.receivedMessagesEditText);
         messageButton = findViewById(R.id.messageButton);
 
+        // check the client id and tag have been set
+        if ( (gnsdkClientId == null) || (gnsdkClientTag == null) ){
+            showError( "Please set Client ID and Client Tag" );
+            return;
+        }
+
+        // get the gnsdk license from the application assets
+        String gnsdkLicense = null;
+        if ( (gnsdkLicenseFilename == null) || (gnsdkLicenseFilename.length() == 0) ){
+            showError( "License filename not set" );
+        } else {
+            gnsdkLicense = getAssetAsString( gnsdkLicenseFilename );
+            if ( gnsdkLicense == null ){
+                showError( "License file not found: " + gnsdkLicenseFilename );
+                return;
+            }
+        }
+
+        try {
+
+            // GnManager must be created first, it initializes GNSDK
+            gnManager = new GnManager( context, gnsdkLicense, GnLicenseInputMode.kLicenseInputModeString );
+
+            // provide handler to receive system events, such as locale update needed
+            gnManager.systemEventHandler( new SystemEvents() );
+
+            // get a user, if no user stored persistently a new user is registered and stored
+            // Note: Android persistent storage used, so no GNSDK storage provider needed to store a user
+            gnUser = new GnUser( new GnUserStore(context), gnsdkClientId, gnsdkClientTag, appString );
+
+            // enable storage provider allowing GNSDK to use its persistent stores
+            GnStorageSqlite.enable();
+
+            // enable local MusicID-Stream recognition (GNSDK storage provider must be enabled as pre-requisite)
+            //GnLookupLocalStream.enable();
+
+            // Loads data to support the requested locale, data is downloaded from Gracenote Service if not
+            // found in persistent storage. Once downloaded it is stored in persistent storage (if storage
+            // provider is enabled). Download and write to persistent storage can be lengthy so perform in
+            // another thread
+            Thread localeThread = new Thread(
+                    new LocaleLoadRunnable(GnLocaleGroup.kLocaleGroupMusic,
+                            GnLanguage.kLanguageEnglish,
+                            GnRegion.kRegionGlobal,
+                            GnDescriptor.kDescriptorDefault,
+                            gnUser)
+            );
+            localeThread.start();
+
+            // Ingest MusicID-Stream local bundle, perform in another thread as it can be lengthy
+            Thread ingestThread = new Thread( new LocalBundleIngestRunnable(context) );
+            ingestThread.start();
+
+            // Set up for continuous listening from the microphone
+            // - create microphone, this can live for lifetime of app
+            // - create GnMusicIdStream instance, this can live for lifetime of app
+            // - configure
+            // Starting and stopping continuous listening should be started and stopped
+            // based on Activity life-cycle, see onPause and onResume for details
+            // To show audio visualization we wrap GnMic in a visualization adapter
+            gnMicrophone = new GnMic();
+            gnMusicId = new GnMusicId(gnUser);
+            gnMusicId.options().lookupData(GnLookupData.kLookupDataContent, true);
+            gnMusicId.options().lookupData(GnLookupData.kLookupDataSonicData, true);
+            gnMusicId.options().resultSingle( true );
+
+
+        } catch ( GnException e ) {
+
+            Log.e(appString, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
+            showError( e.errorAPI() + ": " + e.errorDescription() );
+            return;
+
+        } catch ( Exception e ) {
+            if(e.getMessage() != null){
+                Log.e(appString, e.getMessage());
+                showError( e.getMessage() );
+            }
+            else{
+                e.printStackTrace();
+            }
+            return;
+
+        }
         // Set messageButton onClickListener to send message to wear
         messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,9 +295,9 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
 
                             Long tsLong = System.currentTimeMillis()/1000;
                             String ts = tsLong.toString();
-
-
                             String result = new String(messageEvent.getData());
+                            identifyFingerprint(result);
+
                             receivedMessagesEditText.append("\n" + getString(R.string.received_message) + " " + ts +"\n"+ result +"\n" );
                         }
                     });
@@ -262,6 +394,24 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
         testObject.put("foo", "bar");
         testObject.saveInBackground();
 
+    }
+
+    private void identifyFingerprint(String fingerprintData){
+        try {
+           GnResponseAlbums list = gnMusicId.findAlbums(fingerprintData, GnFingerprintType.kFingerprintTypeStream6);
+           Log.v(TAG, "found " + list.resultCount() + " matches");
+            if(list.resultCount() > 0){
+                GnAlbumIterator iterator = list.albums().getIterator();
+                int i = 1;
+                while(iterator.hasNext()){
+                    GnAlbum album = iterator.next();
+                    Log.v(TAG, "album "+i+": " + album.title().display() + ", by: " + album.artist().name().display());
+                    i++;
+                }
+            }
+        } catch (GnException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -546,4 +696,195 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
     }
 
 
+
+
+
+
+
+
+    /**
+     * Loads a locale
+     */
+    class LocaleLoadRunnable implements Runnable {
+        GnLocaleGroup	group;
+        GnLanguage		language;
+        GnRegion		region;
+        GnDescriptor	descriptor;
+        GnUser			user;
+
+
+        LocaleLoadRunnable(
+                GnLocaleGroup group,
+                GnLanguage		language,
+                GnRegion		region,
+                GnDescriptor	descriptor,
+                GnUser			user) {
+            this.group 		= group;
+            this.language 	= language;
+            this.region 	= region;
+            this.descriptor = descriptor;
+            this.user 		= user;
+        }
+
+        @Override
+        public void run() {
+            try {
+
+                GnLocale locale = new GnLocale(group,language,region,descriptor,gnUser);
+                locale.setGroupDefault();
+
+            } catch (GnException e) {
+                Log.e(appString, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
+            }
+        }
+    }
+
+
+    /**
+     * Loads a local bundle for MusicID-Stream lookups
+     */
+    class LocalBundleIngestRunnable implements Runnable {
+        Context context;
+
+        LocalBundleIngestRunnable(Context context) {
+            this.context = context;
+        }
+
+        public void run() {
+            try {
+
+                // our bundle is delivered as a package asset
+                // to ingest the bundle access it as a stream and write the bytes to
+                // the bundle ingester
+                // bundles should not be delivered with the package as this, rather they
+                // should be downloaded from your own online service
+
+                InputStream bundleInputStream 	= null;
+                int				ingestBufferSize	= 1024;
+                byte[] 			ingestBuffer 		= new byte[ingestBufferSize];
+                int				bytesRead			= 0;
+
+                GnLookupLocalStreamIngest ingester = new GnLookupLocalStreamIngest(new BundleIngestEvents());
+
+                try {
+
+                    bundleInputStream = context.getAssets().open("1557.b");
+
+                    do {
+
+                        bytesRead = bundleInputStream.read(ingestBuffer, 0, ingestBufferSize);
+                        if ( bytesRead == -1 )
+                            bytesRead = 0;
+
+                        ingester.write( ingestBuffer, bytesRead );
+
+                    } while( bytesRead != 0 );
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                ingester.flush();
+
+            } catch (GnException e) {
+                Log.e(appString, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
+            }
+
+        }
+    }
+
+
+    /**
+     * Receives system events from GNSDK
+     */
+    class SystemEvents implements IGnSystemEvents {
+        @Override
+        public void localeUpdateNeeded( GnLocale locale ){
+
+            // Locale update is detected
+            try {
+                locale.update( gnUser );
+            } catch (GnException e) {
+                Log.e(appString, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
+            }
+        }
+
+        @Override
+        public void listUpdateNeeded( GnList list ) {
+            // List update is detected
+            try {
+                list.update( gnUser );
+            } catch (GnException e) {
+                Log.e(appString, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
+            }
+        }
+
+        @Override
+        public void systemMemoryWarning(long currentMemorySize, long warningMemorySize) {
+            // only invoked if a memory warning limit is configured
+        }
+    }
+
+    /**
+     * GNSDK status event delegate
+     */
+    private class StatusEvents implements IGnStatusEvents {
+
+        @Override
+        public void statusEvent( GnStatus status, long percentComplete, long bytesTotalSent, long bytesTotalReceived, IGnCancellable cancellable ) {
+
+        }
+
+    };
+
+    /**
+     * GNSDK bundle ingest status event delegate
+     */
+    private class BundleIngestEvents implements IGnLookupLocalStreamIngestEvents {
+
+        @Override
+        public void statusEvent(GnLookupLocalStreamIngestStatus status, String bundleId, IGnCancellable canceller) {
+
+        }
+    }
+
+
+    /**
+     * Helpers to read license file from assets as string
+     */
+    private String getAssetAsString( String assetName ){
+
+        String assetString = null;
+        InputStream assetStream;
+
+        try {
+
+            assetStream = this.getApplicationContext().getAssets().open(assetName);
+            if(assetStream != null){
+
+                java.util.Scanner s = new java.util.Scanner(assetStream).useDelimiter("\\A");
+
+                assetString = s.hasNext() ? s.next() : "";
+                assetStream.close();
+
+            }else{
+                Log.e(appString, "Asset not found:" + assetName);
+            }
+
+        } catch (IOException e) {
+
+            Log.e(appString, "Error getting asset as string: " + e.getMessage());
+
+        }
+
+        return assetString;
+    }
+
+
+    /**
+     * Helper to show and error
+     */
+    private void showError( String errorMessage ) {
+
+    }
 }
