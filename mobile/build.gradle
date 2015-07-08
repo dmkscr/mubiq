@@ -31,4 +31,6 @@ dependencies {
     compile 'com.google.android.gms:play-services:7.5.0'
     compile 'com.parse.bolts:bolts-android:1.+'
     compile files('src/main/libs/Parse-1.9.2.jar')
+    compile files('libs/gnsdk.jar')
+    compile files('libs/gnsdk_helpers.jar')
 }

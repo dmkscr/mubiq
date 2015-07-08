@@ -5,7 +5,7 @@
     <uses-sdk android:minSdkVersion="11" />
 
     <permission
-        android:name="com.parse.anywall.permission.MAPS_RECEIVE"
+        android:name="com.android.zigzag.mubi.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" >
     </permission>
 
