@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/app_icon_152.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/border.xml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/bottom_panel.xml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/box.xml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/box_off.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/box_on.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/button_border.xml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/button_border_red.xml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/cancel_2x.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/cancel_43_white.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/cancel_widget.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/circle_widget.xml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/clock.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/colored_ring.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/gracenote_header_tile.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/gracenote_header_tile_3.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/gracenote_header_tile_4.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/gracenote_logo.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/gracenote_logo_320.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/gracenote_logo_tile.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/gracenote_logo_tile_transparent.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/headertile.xml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/headertile2.xml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/icon_close_window.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/idmedia.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/idnow.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/idnow_widget.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/libraryid.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/line.xml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/loading.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/no_cover_art.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/no_image.xml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/no_image_widget.xml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/no_metadata.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/options_gear_43_white.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/pindown.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/rectangle_widget.xml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/solid_rectangle.xml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/drawable/textsearch.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/layout/album_review.xml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/layout/bio_review.xml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/layout/detail_view.xml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/layout/histrory_row.xml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/mobile/src/main/res/layout/hostory_layout.xml" charset="windows-1252" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

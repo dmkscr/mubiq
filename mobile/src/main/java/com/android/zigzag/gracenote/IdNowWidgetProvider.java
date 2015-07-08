@@ -10,7 +10,8 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import com.customer.example.R;
+import com.android.zigzag.mubi.R;
+
 
 public class IdNowWidgetProvider extends AppWidgetProvider {
 	

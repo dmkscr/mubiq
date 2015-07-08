@@ -22,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.zigzag.mubi.R;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

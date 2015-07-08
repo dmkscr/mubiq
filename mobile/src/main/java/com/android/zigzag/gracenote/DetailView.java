@@ -12,6 +12,7 @@ import android.widget.ScrollView;
 import android.widget.TableLayout.LayoutParams;
 import android.widget.TextView;
 
+import com.android.zigzag.mubi.R;
 import com.gracenote.gnsdk.GnAlbum;
 import com.gracenote.gnsdk.GnAsset;
 import com.gracenote.gnsdk.GnAssetIterator;

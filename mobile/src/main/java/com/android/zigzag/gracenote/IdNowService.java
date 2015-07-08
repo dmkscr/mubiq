@@ -10,7 +10,7 @@ import android.util.Log;
 public class IdNowService extends Service {
 	public static final String IDNOW= "idnow";
 	public static final String CANCEL= "cancel";
-	private static final String LOGTAG = "GFM IdNow Widget - IdNowService";
+	private static final String LOGTAG = "GFM IdNowService";
 			
 	public IdNowService(){
 		Log.i(LOGTAG, "constructing IdNow service");

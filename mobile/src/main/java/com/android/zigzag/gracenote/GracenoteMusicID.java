@@ -33,6 +33,7 @@ import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.android.zigzag.mubi.R;
 import com.gracenote.gnsdk.*;
 
 import java.io.BufferedInputStream;
@@ -1687,7 +1688,7 @@ public class GracenoteMusicID extends Activity {
 	 * History Tracking:
 	 * initiate the process to insert values into database.
 	 * 
-	 * @param row
+	 * @param albums
 	 *            - contains all the information to be inserted into DB,
 	 *            except location.
 	 */
