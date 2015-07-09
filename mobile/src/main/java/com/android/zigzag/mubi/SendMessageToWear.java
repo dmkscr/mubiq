@@ -7,10 +7,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Geocoder;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.os.ResultReceiver;
 import android.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -24,16 +28,21 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.wearable.Asset;
+import com.google.android.gms.wearable.DataApi;
 import com.google.android.gms.wearable.MessageApi;
 import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
+import com.google.android.gms.wearable.PutDataMapRequest;
+import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
 import com.gracenote.gnsdk.GnAlbum;
 import com.gracenote.gnsdk.GnAlbumIterator;
@@ -70,13 +79,21 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.Charset;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 
 // MainActivity
@@ -88,8 +105,6 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
      * Messaging
      */
     private final String MESSAGE_PATH = "/message";
-    private EditText receivedMessagesEditText;
-    private View messageButton;
     private GoogleApiClient mGoogleApiClient;
     private NodeApi.NodeListener nodeListener;
     private String remoteNodeId;
@@ -130,6 +145,10 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
     private String albumTitle = "";
     private String artist = "";
     private String track = "";
+    private String newTrack;
+    private String coverArtUrl = "";
+    private String nearestAddress = "";
+    private Bitmap coverArt;
 
     private Activity activity;
     private Context context;
@@ -212,6 +231,7 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
         nodeListener = new NodeApi.NodeListener() {
             @Override
             public void onPeerConnected(Node node) {
+                Log.v(TAG, "MOBILE onPeerConnected");
                 remoteNodeId = node.getId();
                 handler.post(new Runnable() {
                     @Override
@@ -223,9 +243,11 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
 
             @Override
             public void onPeerDisconnected(Node node) {
+                Log.v(TAG, "MOBILE onPeerDisconnected");
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
+                        Toast.makeText(getApplication(), getString(R.string.peer_disconnected), Toast.LENGTH_SHORT).show();
                         Toast.makeText(getApplication(), getString(R.string.peer_disconnected), Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -236,6 +258,7 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
         messageListener = new MessageApi.MessageListener() {
             @Override
             public void onMessageReceived(final MessageEvent messageEvent) {
+                Log.v(TAG,"onMessageReceived");
                 if (messageEvent.getPath().equals(MESSAGE_PATH)) {
                     handler.post(new Runnable() {
                         @Override
@@ -266,12 +289,14 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
                         if (getConnectedNodesResult.getStatus().isSuccess() && getConnectedNodesResult.getNodes().size() > 0) {
                             remoteNodeId = getConnectedNodesResult.getNodes().get(0).getId();
                             Log.d(TAG, "remoteNodeId from mobile: " + remoteNodeId);
+                        } else{
+                            Log.d(TAG, "remoteNodeId not working: ");
                         }
                     }
                 });
 
-                mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
-                        mGoogleApiClient);
+                // TODO do this on every positive match
+                mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
                 if (mLastLocation != null) {
                     if (!Geocoder.isPresent()) {
@@ -307,7 +332,7 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
         mResultReceiver = new AddressResultReceiver(new Handler());
 
         // Set defaults, then update using values stored in the Bundle.
-        mAddressRequested = false;
+        mAddressRequested = true;
         mAddressOutput = "";
         updateValuesFromBundle(savedInstanceState);
 
@@ -324,8 +349,6 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
 
     }
 
-    String newTrack;
-
     private void identifyFingerprint(String fingerprintData) {
         try {
             GnResponseAlbums list = gnMusicId.findAlbums(fingerprintData, GnFingerprintType.kFingerprintTypeStream6);
@@ -338,9 +361,8 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
                 while (iterator.hasNext()) {
                     GnAlbum album = iterator.next();
 
-
-                    String coverArtUrl = album.coverArt().asset(GnImageSize.kImageSizeThumbnail).url();
-
+                    coverArtUrl = album.coverArt().asset(GnImageSize.kImageSizeLarge).url();
+                    coverArtUrl = "http://" + coverArtUrl;
 
                     albumTitle = album.title().display();
 
@@ -356,7 +378,7 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
 
                     if( !track.equals(newTrack) ) {
 
-                        Log.v(TAG, "song: " + track + ", by: " + artist + " on album " + i + ": " + albumTitle + " cover Url : " + coverArtUrl);
+                        Log.v(TAG, "track: " + track + ", artist: " + artist + ", album: " + albumTitle + ", coverArtUrl: " + coverArtUrl);
 
                         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
                         mLastUpdateTime = DateFormat.getDateTimeInstance().format(new Date());
@@ -381,7 +403,56 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
         }
     }
 
+    private class getBitmapFromUrl extends AsyncTask<String, String, Bitmap> {
+
+        @Override
+        protected Bitmap doInBackground(String... args) {
+            try {
+
+                Log.d(TAG,"doInBackground");
+                coverArt = BitmapFactory.decodeStream((InputStream)new URL(coverArtUrl).getContent());
+                if(coverArt== null)
+                    Log.d(TAG,"cover null");
+
+                Asset asset = createAssetFromBitmap(coverArt);
+
+                PutDataMapRequest dataMap = PutDataMapRequest.create("/albumDetails");
+                dataMap.getDataMap().putString("albumTitle", " " + albumTitle);
+                dataMap.getDataMap().putString("artist", " " + artist);
+                dataMap.getDataMap().putString("track", " " + track);
+                dataMap.getDataMap().putString("nearestAddress", " " + nearestAddress);
+
+                dataMap.getDataMap().putAsset("coverImg", asset);
+
+                PutDataRequest request = dataMap.asPutDataRequest();
+                PendingResult<DataApi.DataItemResult> pendingResult = Wearable.DataApi
+                        .putDataItem(mGoogleApiClient, request);
+
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return coverArt;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            super.onPostExecute(bitmap);
+            Log.d(TAG, "onPostExecute");
+        }
+
+    }
+
+    private static Asset createAssetFromBitmap(Bitmap bitmap) {
+        final ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteStream);
+        return Asset.createFromBytes(byteStream.toByteArray());
+    }
+
     private void post() {
+
+        Log.e(TAG, "post to PARSE");
 
         MubiqPost post = new MubiqPost();
 
@@ -390,6 +461,8 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
         post.setArtist(artist);
         post.setTrack(track);
         post.setUser(ParseUser.getCurrentUser());
+        post.setCoverArtUrl(coverArtUrl);
+        post.setNearestAddress(nearestAddress);
         ParseACL acl = new ParseACL();
 
         // Give public read access
@@ -403,6 +476,27 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
                 // tbd
             }
         });
+
+        sendingResult();
+    }
+
+    /**
+     * Send matched result back to wear
+     */
+    public void sendingResult() {
+
+        Log.e(TAG, "sendingResult");
+
+        AlbumDataMap albumDataMap = new AlbumDataMap(albumTitle,artist,track,nearestAddress);
+
+        if (mGoogleApiClient.isConnected()) {
+            new getBitmapFromUrl().execute(coverArtUrl);
+
+
+            Log.e(TAG, "sendingResult end");
+
+        }
+
     }
 
 
@@ -654,7 +748,7 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
             displayAddressOutput();
 
             if (resultCode == Constants.SUCCESS_RESULT) {
-                Log.d(TAG, "" + getString(R.string.address_found));
+//                Log.d(TAG, "" + getString(R.string.address_found));
             }
 
             mAddressRequested = false;
@@ -667,7 +761,9 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
      * Updates fields based on data stored in the bundle.
      */
     private void updateValuesFromBundle(Bundle savedInstanceState) {
+
         if (savedInstanceState != null) {
+
             // Check savedInstanceState to see if the address was previously requested.
             if (savedInstanceState.keySet().contains(ADDRESS_REQUESTED_KEY)) {
                 mAddressRequested = savedInstanceState.getBoolean(ADDRESS_REQUESTED_KEY);
@@ -682,7 +778,7 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
     }
 
     protected void displayAddressOutput() {
-        Log.d(TAG, "Nearest address: " + mAddressOutput);
+        nearestAddress = mAddressOutput;
     }
 
 

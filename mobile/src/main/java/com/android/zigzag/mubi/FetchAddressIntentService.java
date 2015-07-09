@@ -18,7 +18,7 @@ import java.util.Locale;
 
 public class FetchAddressIntentService extends IntentService {
 
-    private static final String             TAG                            = "Mubi - Fetch Address";
+    private static final String             TAG                            = "Mubiq - Fetch Address";
 
     protected ResultReceiver                mReceiver;
 
@@ -83,7 +83,7 @@ public class FetchAddressIntentService extends IntentService {
             for(int i = 0; i < address.getMaxAddressLineIndex(); i++) {
                 addressFragments.add(address.getAddressLine(i));
             }
-            Log.i( TAG, getString(R.string.address_found ));
+//            Log.i( TAG, getString(R.string.address_found ));
             deliverResultToReceiver(Constants.SUCCESS_RESULT, TextUtils.join(System.getProperty("line.separator"), addressFragments));
         }
 
@@ -92,7 +92,7 @@ public class FetchAddressIntentService extends IntentService {
     private void deliverResultToReceiver(int resultCode, String message) {
         Bundle bundle = new Bundle();
         bundle.putString(Constants.RESULT_DATA_KEY, message);
-        Log.d( TAG, "deliverResultToReceiver bundle: " + bundle );
+//        Log.d( TAG, "deliverResultToReceiver bundle: " + bundle );
         mReceiver.send(resultCode, bundle);
     }
 

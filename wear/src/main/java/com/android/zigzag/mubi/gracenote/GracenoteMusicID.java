@@ -11,6 +11,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -39,11 +41,18 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.wearable.Asset;
+import com.google.android.gms.wearable.DataApi;
+import com.google.android.gms.wearable.DataEvent;
+import com.google.android.gms.wearable.DataEventBuffer;
+import com.google.android.gms.wearable.DataMap;
+import com.google.android.gms.wearable.DataMapItem;
 import com.google.android.gms.wearable.MessageApi;
 import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
+import com.google.android.gms.wearable.WearableListenerService;
 import com.gracenote.gnsdk.GnAlbum;
 import com.gracenote.gnsdk.GnAlbumIterator;
 import com.gracenote.gnsdk.GnAudioFile;
@@ -105,13 +114,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
-public class GracenoteMusicID extends Activity {
+public class GracenoteMusicID extends Activity implements DataApi.DataListener {
 
 	static final String                     gnsdkClientId 			= "9148416";
 	static final String                     gnsdkClientTag 			= "EA1C43BD1FFE51ED7ECF272A2F04DA45";
 	static final String                     gnsdkLicenseFilename 	= "license.txt";
-	private static final String             TAG				        = "Mubiq";
+	//private static final String             TAG				        = "Mubiq";
 	
 	private Activity                        activity;
 	private Context                         context;
@@ -128,11 +138,12 @@ public class GracenoteMusicID extends Activity {
 
     private GoogleApiClient                 mGoogleApiClient;
     private NodeApi.NodeListener            nodeListener;
-    private String                          remoteNodeId = "";
+    private String                          remoteNodeId 			= "";
     private MessageApi.MessageListener      messageListener;
-    private final String                    MESSAGE_PATH                   = "/message";
-    private Handler                         handler;
+    private final String                    MESSAGE_PATH            = "/message";
+    private Handler                         handler, handlerTimer;
 
+	ImageView coverImg;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -140,6 +151,10 @@ public class GracenoteMusicID extends Activity {
 		activity = this;
 		context  = this.getApplicationContext();
         handler = new Handler();
+		handlerTimer = new Handler();
+
+		setContentView(R.layout.main);
+		coverImg = (ImageView) findViewById(R.id.coverImg);
 
 		// check the client id and tag have been set
 		if ( (gnsdkClientId == null) || (gnsdkClientTag == null) ){
@@ -217,12 +232,14 @@ public class GracenoteMusicID extends Activity {
         nodeListener = new NodeApi.NodeListener() {
             @Override
             public void onPeerConnected(Node node) {
+				Log.v(TAG, "WEAR onPeerConnected");
                 remoteNodeId = node.getId();
             }
 
             @Override
             public void onPeerDisconnected(Node node) {
-                remoteNodeId= "";
+				Log.v(TAG, "WEAR onPeerDisconnected");
+                //remoteNodeId= "";
             }
         };
 
@@ -247,6 +264,7 @@ public class GracenoteMusicID extends Activity {
             public void onConnected(Bundle bundle) {
                 Wearable.NodeApi.addListener(mGoogleApiClient, nodeListener);
                 Wearable.MessageApi.addListener(mGoogleApiClient, messageListener);
+				Wearable.DataApi.addListener(mGoogleApiClient, GracenoteMusicID.this);
                 // If there is a connected node, get it's id that is used when sending messages
                 Wearable.NodeApi.getConnectedNodes(mGoogleApiClient).setResultCallback(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
                     @Override
@@ -268,44 +286,37 @@ public class GracenoteMusicID extends Activity {
 
             @Override
             public void onConnectionSuspended(int i) {
-                remoteNodeId = "";
+
             }
         }).addApi(Wearable.API).build();
 
-        final Handler handler = new Handler();
+
         timer = new Timer();
-        TimerTask doAsynchronousTask = new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(new Runnable() {
-                    @SuppressWarnings("unchecked")
-                    public void run() {
-                        try {
-                            fingerprinting();
-                        }
-                        catch (Exception e) {
-                            Log.d( TAG, "fingerprint not called: " + e.getMessage());
-                        }
-                    }
-                });
-            }
-        };
-        timer.schedule(doAsynchronousTask, 0, 10000);
+       // timer.schedule(doAsynchronousTask, 0, 10000);
 	}
 
+	TimerTask doAsynchronousTask = new TimerTask() {
+		@Override
+		public void run() {
+			handlerTimer.post(new Runnable() {
+				@SuppressWarnings("unchecked")
+				public void run() {
+					try {
+						fingerprinting();
+					}
+					catch (Exception e) {
+						Log.d( TAG, "fingerprint not called: " + e.getMessage());
+					}
+				}
+			});
+		}
+	};
 
     @Override
 	protected void onResume() {
 		super.onResume();
-		
-		if ( gnMusicId != null ) {
-            try {
-                fingerprinting();
-            }
-            catch (Exception e) {
-                Log.d( TAG, "fingerprint not called" + e.getMessage());
-            }
-		}
+
+		timer.schedule(doAsynchronousTask, 0, 10000);
 
         int connectionResult = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
 
@@ -325,6 +336,7 @@ public class GracenoteMusicID extends Activity {
 	@Override
 	protected void onPause() {
 
+		timer.cancel();
         Wearable.NodeApi.removeListener(mGoogleApiClient, nodeListener);
         Wearable.MessageApi.removeListener(mGoogleApiClient, messageListener);
         mGoogleApiClient.disconnect();
@@ -334,6 +346,65 @@ public class GracenoteMusicID extends Activity {
 		if ( gnMusicId != null ) {
             timer.cancel();
 		}
+	}
+
+	private String TAG = "Mubiq";
+
+	private static final String WEARABLE_DATA_PATH = "/albumDetails";
+
+
+	@Override
+	public void onDataChanged(DataEventBuffer dataEvents) {
+
+		Log.v(TAG, "onDataChanged");
+
+		DataMap dataMap;
+		for (DataEvent event : dataEvents) {
+
+			// Check the data type
+			if (event.getType() == DataEvent.TYPE_CHANGED) {
+				// Check the data path
+				String path = event.getDataItem().getUri().getPath();
+				if (path.equals(WEARABLE_DATA_PATH)) {}
+				dataMap = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
+				Log.v(TAG, "DataMap received on watch: " + dataMap);
+
+				DataMapItem dataMapItem = DataMapItem.fromDataItem(event.getDataItem());
+				Asset profileAsset = dataMapItem.getDataMap().getAsset("coverImg");
+				final Bitmap bitmap = loadBitmapFromAsset(profileAsset);
+				Log.d("asd", bitmap.getByteCount() + "");
+
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						coverImg.setImageBitmap(bitmap);
+					}
+				});
+
+			}
+		}
+	}
+
+	public Bitmap loadBitmapFromAsset(Asset asset) {
+		if (asset == null) {
+			throw new IllegalArgumentException("Asset must be non-null");
+		}
+		ConnectionResult result =
+				mGoogleApiClient.blockingConnect(1000, TimeUnit.MILLISECONDS);
+		if (!result.isSuccess()) {
+			return null;
+		}
+		// convert asset into a file descriptor and block until it's ready
+		InputStream assetInputStream = Wearable.DataApi.getFdForAsset(
+				mGoogleApiClient, asset).await().getInputStream();
+		mGoogleApiClient.disconnect();
+
+		if (assetInputStream == null) {
+			Log.w(TAG, "Requested an unknown Asset.");
+			return null;
+		}
+		// decode the stream into a bitmap
+		return BitmapFactory.decodeStream(assetInputStream);
 	}
 
     private class MusicIDEvents implements IGnStatusEvents {
@@ -349,6 +420,7 @@ public class GracenoteMusicID extends Activity {
     public void fingerprinting() {
 
         try {
+			Log.d(TAG, "fingerprinting to remoteNodeId:" + remoteNodeId);
 
             gnMusicId.fingerprintFromSource(gnMicrophone, GnFingerprintType.kFingerprintTypeStream6);
             String fingerprint = gnMusicId.fingerprintDataGet();
@@ -361,9 +433,10 @@ public class GracenoteMusicID extends Activity {
                     } else {
                         Log.d(TAG, "sendMessageResult (fail): " + sendMessageResult);
                     }
-                }
-            });
-            Log.v(TAG, "result: " + fingerprint);
+				}
+			});
+
+			Log.v(TAG, "result: " + fingerprint);
 
         } catch (GnException e) {
 

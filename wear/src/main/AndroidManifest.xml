@@ -3,6 +3,7 @@
     package="com.android.zigzag.mubi" >
 
     <uses-feature android:name="android.hardware.type.watch" />
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
@@ -27,6 +28,8 @@
             </intent-filter>
         </activity>
         <activity android:name="android.support.wearable.activity.ConfirmationActivity" />
+
+
     </application>
 
 </manifest>

@@ -14,6 +14,10 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.wearable.DataApi;
+import com.google.android.gms.wearable.DataEvent;
+import com.google.android.gms.wearable.DataEventBuffer;
+import com.google.android.gms.wearable.DataMapItem;
 import com.google.android.gms.wearable.MessageApi;
 import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.Node;
@@ -36,6 +40,9 @@ public class SendMessageToMobile extends Activity {
     private MessageApi.MessageListener      messageListener;
     private Handler                         handler;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,16 +60,16 @@ public class SendMessageToMobile extends Activity {
                 Wearable.MessageApi.sendMessage(mGoogleApiClient, remoteNodeId, MESSAGE_PATH, null).setResultCallback(new ResultCallback<MessageApi.SendMessageResult>() {
                     @Override
                     public void onResult(MessageApi.SendMessageResult sendMessageResult) {
-                        Log.d(TAG, "sendMessageResult " + sendMessageResult);
+//                        Log.d(TAG, "sendMessageResult " + sendMessageResult);
                         Intent intent = new Intent(getApplicationContext(), ConfirmationActivity.class);
                         if (sendMessageResult.getStatus().isSuccess()) {
-                            Log.d(TAG, "sendMessageResult status (success): " + sendMessageResult.getStatus().isSuccess());
-                            intent.putExtra(ConfirmationActivity.EXTRA_ANIMATION_TYPE, ConfirmationActivity.SUCCESS_ANIMATION);
-                            intent.putExtra(ConfirmationActivity.EXTRA_MESSAGE, getString(R.string.message_sent));
+//                            Log.d(TAG, "sendMessageResult status (success): " + sendMessageResult.getStatus().isSuccess());
+//                            intent.putExtra(ConfirmationActivity.EXTRA_ANIMATION_TYPE, ConfirmationActivity.SUCCESS_ANIMATION);
+//                            intent.putExtra(ConfirmationActivity.EXTRA_MESSAGE, getString(R.string.message_sent));
                         } else {
-                            Log.d(TAG, "sendMessageResult status (failure): " + sendMessageResult.getStatus().isSuccess());
-                            intent.putExtra(ConfirmationActivity.EXTRA_ANIMATION_TYPE, ConfirmationActivity.FAILURE_ANIMATION);
-                            intent.putExtra(ConfirmationActivity.EXTRA_MESSAGE, getString(R.string.error_message));
+//                            Log.d(TAG, "sendMessageResult status (failure): " + sendMessageResult.getStatus().isSuccess());
+//                            intent.putExtra(ConfirmationActivity.EXTRA_ANIMATION_TYPE, ConfirmationActivity.FAILURE_ANIMATION);
+//                            intent.putExtra(ConfirmationActivity.EXTRA_MESSAGE, getString(R.string.error_message));
                         }
 //                        startActivity(intent);
                     }
@@ -78,12 +85,12 @@ public class SendMessageToMobile extends Activity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        messageButton.setEnabled(true);
+                        // tbd
                     }
                 });
                 Intent intent = new Intent(getApplicationContext(), ConfirmationActivity.class);
-                intent.putExtra(ConfirmationActivity.EXTRA_ANIMATION_TYPE, ConfirmationActivity.SUCCESS_ANIMATION);
-                intent.putExtra(ConfirmationActivity.EXTRA_MESSAGE, getString(R.string.peer_connected));
+//                intent.putExtra(ConfirmationActivity.EXTRA_ANIMATION_TYPE, ConfirmationActivity.SUCCESS_ANIMATION);
+//                intent.putExtra(ConfirmationActivity.EXTRA_MESSAGE, getString(R.string.peer_connected));
                 startActivity(intent);
             }
 
@@ -100,6 +107,8 @@ public class SendMessageToMobile extends Activity {
             }
         };
 
+
+
         // Create MessageListener that receives messages sent from mobile
         messageListener = new MessageApi.MessageListener() {
             @Override
@@ -108,12 +117,7 @@ public class SendMessageToMobile extends Activity {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-
-                            Long tsLong = System.currentTimeMillis() / 1000;
-                            String ts = tsLong.toString();
-
-                            receivedMessagesEditText.append("\n" + getString(R.string.received_message) + " " + ts);
-
+                            // tbd
                         }
                     });
                 }
@@ -180,5 +184,4 @@ public class SendMessageToMobile extends Activity {
         mGoogleApiClient.disconnect();
         super.onPause();
     }
-
 }

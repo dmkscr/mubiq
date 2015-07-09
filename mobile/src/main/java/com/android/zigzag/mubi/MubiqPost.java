@@ -1,5 +1,6 @@
 package com.android.zigzag.mubi;
 
+import com.google.android.gms.wearable.Asset;
 import com.parse.ParseClassName;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
@@ -27,13 +28,14 @@ public class MubiqPost extends ParseObject {
   public void setTrack(String value) { put("track", value); }
 
 
-  public ParseUser getUser() {
-    return getParseUser("user");
-  }
+  public ParseUser getUser() { return getParseUser("user"); }
 
-  public void setUser(ParseUser value) {
-    put("user", value);
-  }
+  public void setUser(ParseUser value) { put("user", value); }
+
+
+  public ParseUser getCoverArtUrl() { return getParseUser("coverArtUrl"); }
+
+  public void setCoverArtUrl(String value) { put("coverArtUrl", value); }
 
 
   public ParseGeoPoint getLocation() {
@@ -42,6 +44,15 @@ public class MubiqPost extends ParseObject {
 
   public void setLocation(ParseGeoPoint value) {
     put("location", value);
+  }
+
+
+  public String getNearestAddress() {
+    return getString("nearestAddress");
+  }
+
+  public void setNearestAddress(String value) {
+    put("nearestAddress", value);
   }
 
 
