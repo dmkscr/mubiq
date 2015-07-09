@@ -376,6 +376,7 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
                         track = album.trackMatched().title().display();
                     }
 
+                    // TODO re-enable
                     if( !track.equals(newTrack) ) {
 
                         Log.v(TAG, "track: " + track + ", artist: " + artist + ", album: " + albumTitle + ", coverArtUrl: " + coverArtUrl);
@@ -392,6 +393,8 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
 
                         i++;
 
+                   } else{
+                        Log.v(TAG, "duplicated track, skipping");
                     }
 
                 }
@@ -409,20 +412,26 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
         protected Bitmap doInBackground(String... args) {
             try {
 
-                Log.d(TAG,"doInBackground");
-                coverArt = BitmapFactory.decodeStream((InputStream)new URL(coverArtUrl).getContent());
-                if(coverArt== null)
-                    Log.d(TAG,"cover null");
-
-                Asset asset = createAssetFromBitmap(coverArt);
-
                 PutDataMapRequest dataMap = PutDataMapRequest.create("/albumDetails");
+
+                Log.d(TAG,"doInBackground");
+                if(!coverArtUrl.equals("http://")){
+                    coverArt = BitmapFactory.decodeStream((InputStream)new URL(coverArtUrl).getContent());
+                } else{
+                    coverArt = null;
+                }
+                if(coverArt== null) {
+                    Log.d(TAG, "cover null");
+
+                } else {
+                    Asset asset = createAssetFromBitmap(coverArt);
+                    dataMap.getDataMap().putAsset("coverImg", asset);
+                }
+
                 dataMap.getDataMap().putString("albumTitle", " " + albumTitle);
                 dataMap.getDataMap().putString("artist", " " + artist);
                 dataMap.getDataMap().putString("track", " " + track);
                 dataMap.getDataMap().putString("nearestAddress", " " + nearestAddress);
-
-                dataMap.getDataMap().putAsset("coverImg", asset);
 
                 PutDataRequest request = dataMap.asPutDataRequest();
                 PendingResult<DataApi.DataItemResult> pendingResult = Wearable.DataApi

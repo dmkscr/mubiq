@@ -45,36 +45,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SendMessageToWear.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SendMessageToWear.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/SendMessageToWear.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.0">
-              <caret line="260" column="47" selection-start-line="260" selection-start-column="47" selection-end-line="260" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.31903946">
+              <caret line="414" column="19" selection-start-line="414" selection-start-column="19" selection-end-line="414" selection-end-column="19" />
               <folding>
-                <element signature="e#8546#8580#0" expanded="true" />
-                <element signature="e#8975#9012#0" expanded="true" />
-                <element signature="e#9099#9136#0" expanded="true" />
-                <element signature="e#9261#12229#0" expanded="true" />
-                <element signature="e#12228#12229#0" expanded="true" />
-                <element signature="e#13868#13898#0" expanded="true" />
-                <element signature="e#13958#13999#0" expanded="true" />
-                <element signature="e#14737#14781#0" expanded="true" />
-                <element signature="method#identifyFingerprint#0;class#SendMessageToWear#0" expanded="false" />
-                <element signature="method#createAssetFromBitmap#0;class#SendMessageToWear#0" expanded="false" />
-                <element signature="e#20166#20304#0" expanded="true" />
-                <element signature="e#20303#20304#0" expanded="true" />
+                <element signature="class#12340:14354" expanded="false" />
+                <element signature="e#20486#20624#0" expanded="true" />
+                <element signature="e#20623#20624#0" expanded="true" />
                 <element signature="class#LocaleLoadRunnable#0;class#SendMessageToWear#0" expanded="false" />
                 <element signature="class#SystemEvents#0;class#SendMessageToWear#0" expanded="false" />
                 <element signature="class#StatusEvents#0;class#SendMessageToWear#0" expanded="false" />
                 <element signature="class#BundleIngestEvents#0;class#SendMessageToWear#0" expanded="false" />
                 <element signature="method#getAssetAsString#0;class#SendMessageToWear#0" expanded="false" />
                 <element signature="method#showError#0;class#SendMessageToWear#0" expanded="false" />
-                <element signature="e#29172#29173#0" expanded="true" />
-                <element signature="e#29219#29220#0" expanded="true" />
-                <element signature="e#30480#30513#0" expanded="true" />
-                <element signature="e#31733#31766#0" expanded="true" />
-                <element signature="e#33751#33775#0" expanded="true" />
-                <element signature="e#33806#33832#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -83,14 +68,9 @@
       <file leaf-file-name="MubiqPost.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/MubiqPost.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.04">
+            <state vertical-scroll-proportion="0.0">
               <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-              <folding>
-                <element signature="e#1206#1207#0" expanded="true" />
-                <element signature="e#1250#1251#0" expanded="true" />
-                <element signature="e#1299#1300#0" expanded="true" />
-                <element signature="e#1337#1338#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -115,19 +95,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GracenoteMusicID.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GracenoteMusicID.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/GracenoteMusicID.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4919571">
-              <caret line="373" column="16" selection-start-line="373" selection-start-column="16" selection-end-line="373" selection-end-column="16" />
+            <state vertical-scroll-proportion="-10.16">
+              <caret line="376" column="0" selection-start-line="376" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
               <folding>
                 <element signature="e#9026#9515#0" expanded="true" />
-                <element signature="e#9254#9471#0" expanded="true" />
-                <element signature="e#9470#9471#0" expanded="true" />
                 <element signature="e#9514#9515#0" expanded="true" />
-                <element signature="e#11567#11597#0" expanded="true" />
-                <element signature="e#13639#13747#0" expanded="true" />
-                <element signature="e#13746#13747#0" expanded="true" />
+                <element signature="method#loadBitmapFromAsset#0;class#GracenoteMusicID#0" expanded="false" />
+                <element signature="class#MusicIDEvents#0;class#GracenoteMusicID#0" expanded="false" />
                 <element signature="class#LocaleLoadRunnable#0;class#GracenoteMusicID#0" expanded="false" />
                 <element signature="class#LocalBundleIngestRunnable#0;class#GracenoteMusicID#0" expanded="false" />
                 <element signature="class#SystemEvents#0;class#GracenoteMusicID#0" expanded="false" />
@@ -146,7 +123,7 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.0">
+            <state vertical-scroll-proportion="0.0">
               <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
               <folding />
             </state>
@@ -159,7 +136,7 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.5">
+            <state vertical-scroll-proportion="0.0">
               <caret line="17" column="17" selection-start-line="17" selection-start-column="4" selection-end-line="19" selection-end-column="43" />
               <folding />
             </state>
@@ -169,18 +146,21 @@
       <file leaf-file-name="SendMessageToMobile.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/SendMessageToMobile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="13.0">
+            <state vertical-scroll-proportion="0.0">
               <caret line="28" column="49" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
               <folding>
-                <element signature="e#4046#4203#0" expanded="true" />
-                <element signature="e#4202#4203#0" expanded="true" />
-                <element signature="e#4689#4846#0" expanded="true" />
-                <element signature="e#4845#4846#0" expanded="true" />
-                <element signature="e#5113#5562#0" expanded="true" />
-                <element signature="e#5341#5518#0" expanded="true" />
-                <element signature="e#5517#5518#0" expanded="true" />
-                <element signature="e#5561#5562#0" expanded="true" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#2152#3715#0" expanded="false" />
+                <element signature="e#2363#3689#0" expanded="false" />
+                <element signature="e#3688#3689#0" expanded="false" />
+                <element signature="e#3714#3715#0" expanded="false" />
                 <element signature="class#5706:7371" expanded="false" />
+                <element signature="e#6166#7204#0" expanded="false" />
+                <element signature="e#7203#7204#0" expanded="false" />
+                <element signature="e#7297#7298#0" expanded="false" />
+                <element signature="e#7360#7361#0" expanded="false" />
+                <element signature="e#7876#8067#0" expanded="false" />
+                <element signature="e#8066#8067#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -2411,8 +2391,8 @@
         <option value="$PROJECT_DIR$/wear/src/main/res/layout/rect_activity_main.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/res/layout/main.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/SendMessageToWear.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/GracenoteMusicID.java" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/SendMessageToWear.java" />
       </list>
     </option>
   </component>
@@ -2448,135 +2428,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mubiq" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mubiq" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mubiq" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mubiq" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mubiq" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wear" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mubiq" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mubiq" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wear" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mubiq" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mubiq" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wear" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mubiq" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mubiq" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mobile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mubiq" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mubiq" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mobile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mubiq" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mubiq" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mobile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
@@ -2784,7 +2636,135 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mubiq" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mubiq" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mubiq" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mubiq" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mubiq" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wear" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mubiq" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mubiq" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wear" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mubiq" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mubiq" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wear" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mubiq" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mubiq" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mubiq" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mubiq" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mubiq" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mubiq" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2795,10 +2775,11 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="05a83150f0dd803b" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="R3AF601ALVD" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_21_x86" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -2809,7 +2790,7 @@
       <recent name="C:\Users\zigzag\Documents\mubiq\wear\src\main\res\layout" />
     </key>
   </component>
-  <component name="RunManager" selected="Android Application.wear">
+  <component name="RunManager" selected="Android Application.mobile">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -3036,7 +3017,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-379" y="-1449" width="2578" height="1458" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32786885" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -3045,16 +3026,14 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32786885" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32943013" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3458236" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.49960968" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13824701" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32943013" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18605578" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988048" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -3065,7 +3044,17 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32943013" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -3077,10 +3066,24 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/GracenoteMusicID.java</url>
+          <line>375</line>
+          <properties />
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/SendMessageToWear.java</url>
+          <line>417</line>
+          <properties />
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="17" />
+      <option name="time" value="21" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="mobile">
@@ -3118,9 +3121,18 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="96" column="19" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="19" />
           <folding>
-            <element signature="e#4689#4846#0" expanded="true" />
-            <element signature="e#4845#4846#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2152#3715#0" expanded="false" />
+            <element signature="e#2363#3689#0" expanded="false" />
+            <element signature="e#3688#3689#0" expanded="false" />
+            <element signature="e#3714#3715#0" expanded="false" />
             <element signature="class#5706:7371" expanded="false" />
+            <element signature="e#6166#7204#0" expanded="false" />
+            <element signature="e#7203#7204#0" expanded="false" />
+            <element signature="e#7297#7298#0" expanded="false" />
+            <element signature="e#7360#7361#0" expanded="false" />
+            <element signature="e#7876#8067#0" expanded="false" />
+            <element signature="e#8066#8067#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3130,9 +3142,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="414" column="0" selection-start-line="414" selection-start-column="0" selection-end-line="414" selection-end-column="0" />
           <folding>
-            <element signature="class#8616:8996" expanded="false" />
-            <element signature="class#9626:11318" expanded="false" />
-            <element signature="method#onResume#0;class#GracenoteMusicID#0" expanded="false" />
+            <element signature="e#9026#9515#0" expanded="true" />
+            <element signature="e#9514#9515#0" expanded="true" />
             <element signature="method#loadBitmapFromAsset#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#MusicIDEvents#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#LocaleLoadRunnable#0;class#GracenoteMusicID#0" expanded="false" />
@@ -3161,7 +3172,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="93" selection-start-line="14" selection-start-column="93" selection-end-line="14" selection-end-column="93" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3170,30 +3180,15 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="368" column="0" selection-start-line="368" selection-start-column="0" selection-end-line="368" selection-end-column="0" />
           <folding>
-            <element signature="e#8546#8580#0" expanded="true" />
-            <element signature="e#8975#9012#0" expanded="true" />
-            <element signature="e#9099#9136#0" expanded="true" />
-            <element signature="e#9261#12229#0" expanded="true" />
-            <element signature="e#12228#12229#0" expanded="true" />
-            <element signature="e#13868#13898#0" expanded="true" />
-            <element signature="e#13958#13999#0" expanded="true" />
-            <element signature="e#14737#14781#0" expanded="true" />
-            <element signature="method#identifyFingerprint#0;class#SendMessageToWear#0" expanded="false" />
-            <element signature="method#createAssetFromBitmap#0;class#SendMessageToWear#0" expanded="false" />
-            <element signature="e#20166#20304#0" expanded="true" />
-            <element signature="e#20303#20304#0" expanded="true" />
+            <element signature="class#12340:14354" expanded="false" />
+            <element signature="e#20486#20624#0" expanded="true" />
+            <element signature="e#20623#20624#0" expanded="true" />
             <element signature="class#LocaleLoadRunnable#0;class#SendMessageToWear#0" expanded="false" />
             <element signature="class#SystemEvents#0;class#SendMessageToWear#0" expanded="false" />
             <element signature="class#StatusEvents#0;class#SendMessageToWear#0" expanded="false" />
             <element signature="class#BundleIngestEvents#0;class#SendMessageToWear#0" expanded="false" />
             <element signature="method#getAssetAsString#0;class#SendMessageToWear#0" expanded="false" />
             <element signature="method#showError#0;class#SendMessageToWear#0" expanded="false" />
-            <element signature="e#29172#29173#0" expanded="true" />
-            <element signature="e#29219#29220#0" expanded="true" />
-            <element signature="e#30480#30513#0" expanded="true" />
-            <element signature="e#31733#31766#0" expanded="true" />
-            <element signature="e#33751#33775#0" expanded="true" />
-            <element signature="e#33806#33832#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3202,9 +3197,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3215,7 +3208,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3243,9 +3235,18 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="96" column="19" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="19" />
           <folding>
-            <element signature="e#4689#4846#0" expanded="true" />
-            <element signature="e#4845#4846#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2152#3715#0" expanded="false" />
+            <element signature="e#2363#3689#0" expanded="false" />
+            <element signature="e#3688#3689#0" expanded="false" />
+            <element signature="e#3714#3715#0" expanded="false" />
             <element signature="class#5706:7371" expanded="false" />
+            <element signature="e#6166#7204#0" expanded="false" />
+            <element signature="e#7203#7204#0" expanded="false" />
+            <element signature="e#7297#7298#0" expanded="false" />
+            <element signature="e#7360#7361#0" expanded="false" />
+            <element signature="e#7876#8067#0" expanded="false" />
+            <element signature="e#8066#8067#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3255,9 +3256,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="414" column="0" selection-start-line="414" selection-start-column="0" selection-end-line="414" selection-end-column="0" />
           <folding>
-            <element signature="class#8616:8996" expanded="false" />
-            <element signature="class#9626:11318" expanded="false" />
-            <element signature="method#onResume#0;class#GracenoteMusicID#0" expanded="false" />
+            <element signature="e#9026#9515#0" expanded="true" />
+            <element signature="e#9514#9515#0" expanded="true" />
             <element signature="method#loadBitmapFromAsset#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#MusicIDEvents#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#LocaleLoadRunnable#0;class#GracenoteMusicID#0" expanded="false" />
@@ -3286,7 +3286,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="93" selection-start-line="14" selection-start-column="93" selection-end-line="14" selection-end-column="93" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3295,30 +3294,15 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="366" column="0" selection-start-line="366" selection-start-column="0" selection-end-line="366" selection-end-column="0" />
           <folding>
-            <element signature="e#8546#8580#0" expanded="true" />
-            <element signature="e#8975#9012#0" expanded="true" />
-            <element signature="e#9099#9136#0" expanded="true" />
-            <element signature="e#9261#12229#0" expanded="true" />
-            <element signature="e#12228#12229#0" expanded="true" />
-            <element signature="e#13868#13898#0" expanded="true" />
-            <element signature="e#13958#13999#0" expanded="true" />
-            <element signature="e#14737#14781#0" expanded="true" />
-            <element signature="method#identifyFingerprint#0;class#SendMessageToWear#0" expanded="false" />
-            <element signature="method#createAssetFromBitmap#0;class#SendMessageToWear#0" expanded="false" />
-            <element signature="e#20166#20304#0" expanded="true" />
-            <element signature="e#20303#20304#0" expanded="true" />
+            <element signature="class#12340:14354" expanded="false" />
+            <element signature="e#20486#20624#0" expanded="true" />
+            <element signature="e#20623#20624#0" expanded="true" />
             <element signature="class#LocaleLoadRunnable#0;class#SendMessageToWear#0" expanded="false" />
             <element signature="class#SystemEvents#0;class#SendMessageToWear#0" expanded="false" />
             <element signature="class#StatusEvents#0;class#SendMessageToWear#0" expanded="false" />
             <element signature="class#BundleIngestEvents#0;class#SendMessageToWear#0" expanded="false" />
             <element signature="method#getAssetAsString#0;class#SendMessageToWear#0" expanded="false" />
             <element signature="method#showError#0;class#SendMessageToWear#0" expanded="false" />
-            <element signature="e#29172#29173#0" expanded="true" />
-            <element signature="e#29219#29220#0" expanded="true" />
-            <element signature="e#30480#30513#0" expanded="true" />
-            <element signature="e#31733#31766#0" expanded="true" />
-            <element signature="e#33751#33775#0" expanded="true" />
-            <element signature="e#33806#33832#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3327,9 +3311,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3340,7 +3322,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3368,9 +3349,18 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="96" column="19" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="19" />
           <folding>
-            <element signature="e#4689#4846#0" expanded="true" />
-            <element signature="e#4845#4846#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2152#3715#0" expanded="false" />
+            <element signature="e#2363#3689#0" expanded="false" />
+            <element signature="e#3688#3689#0" expanded="false" />
+            <element signature="e#3714#3715#0" expanded="false" />
             <element signature="class#5706:7371" expanded="false" />
+            <element signature="e#6166#7204#0" expanded="false" />
+            <element signature="e#7203#7204#0" expanded="false" />
+            <element signature="e#7297#7298#0" expanded="false" />
+            <element signature="e#7360#7361#0" expanded="false" />
+            <element signature="e#7876#8067#0" expanded="false" />
+            <element signature="e#8066#8067#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3380,9 +3370,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="414" column="0" selection-start-line="414" selection-start-column="0" selection-end-line="414" selection-end-column="0" />
           <folding>
-            <element signature="class#8616:8996" expanded="false" />
-            <element signature="class#9626:11318" expanded="false" />
-            <element signature="method#onResume#0;class#GracenoteMusicID#0" expanded="false" />
+            <element signature="e#9026#9515#0" expanded="true" />
+            <element signature="e#9514#9515#0" expanded="true" />
             <element signature="method#loadBitmapFromAsset#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#MusicIDEvents#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#LocaleLoadRunnable#0;class#GracenoteMusicID#0" expanded="false" />
@@ -3411,7 +3400,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="93" selection-start-line="14" selection-start-column="93" selection-end-line="14" selection-end-column="93" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3492,7 +3480,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="93" selection-start-line="14" selection-start-column="93" selection-end-line="14" selection-end-column="93" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3507,7 +3494,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.35814607">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3525,7 +3511,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1763943">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3560,12 +3545,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7465839">
           <caret line="93" column="61" selection-start-line="93" selection-start-column="61" selection-end-line="93" selection-end-column="61" />
-          <folding>
-            <element signature="e#1144#1189#0" expanded="true" />
-            <element signature="e#1814#1855#0" expanded="true" />
-            <element signature="e#2066#2107#0" expanded="true" />
-            <element signature="e#2462#2498#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3579,18 +3558,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/SendMessageToMobile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="13.0">
+        <state vertical-scroll-proportion="0.0">
           <caret line="28" column="49" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
           <folding>
-            <element signature="e#4046#4203#0" expanded="true" />
-            <element signature="e#4202#4203#0" expanded="true" />
-            <element signature="e#4689#4846#0" expanded="true" />
-            <element signature="e#4845#4846#0" expanded="true" />
-            <element signature="e#5113#5562#0" expanded="true" />
-            <element signature="e#5341#5518#0" expanded="true" />
-            <element signature="e#5517#5518#0" expanded="true" />
-            <element signature="e#5561#5562#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2152#3715#0" expanded="false" />
+            <element signature="e#2363#3689#0" expanded="false" />
+            <element signature="e#3688#3689#0" expanded="false" />
+            <element signature="e#3714#3715#0" expanded="false" />
             <element signature="class#5706:7371" expanded="false" />
+            <element signature="e#6166#7204#0" expanded="false" />
+            <element signature="e#7203#7204#0" expanded="false" />
+            <element signature="e#7297#7298#0" expanded="false" />
+            <element signature="e#7360#7361#0" expanded="false" />
+            <element signature="e#7876#8067#0" expanded="false" />
+            <element signature="e#8066#8067#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3599,7 +3581,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.1048745">
           <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3610,7 +3591,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12108262">
           <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3619,7 +3599,7 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.5">
+        <state vertical-scroll-proportion="0.0">
           <caret line="17" column="17" selection-start-line="17" selection-start-column="4" selection-end-line="19" selection-end-column="43" />
           <folding />
         </state>
@@ -3630,7 +3610,7 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.0">
+        <state vertical-scroll-proportion="0.0">
           <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
           <folding />
         </state>
@@ -3640,7 +3620,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34358975">
           <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3648,7 +3627,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33291924">
           <caret line="537" column="53" selection-start-line="537" selection-start-column="53" selection-end-line="537" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3656,22 +3634,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6335404">
           <caret line="30" column="68" selection-start-line="30" selection-start-column="68" selection-end-line="30" selection-end-column="68" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/MubiqPost.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.04">
+        <state vertical-scroll-proportion="0.0">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <element signature="e#1206#1207#0" expanded="true" />
-            <element signature="e#1250#1251#0" expanded="true" />
-            <element signature="e#1299#1300#0" expanded="true" />
-            <element signature="e#1337#1338#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3683,51 +3653,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/SendMessageToWear.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.0">
-          <caret line="260" column="47" selection-start-line="260" selection-start-column="47" selection-end-line="260" selection-end-column="47" />
-          <folding>
-            <element signature="e#8546#8580#0" expanded="true" />
-            <element signature="e#8975#9012#0" expanded="true" />
-            <element signature="e#9099#9136#0" expanded="true" />
-            <element signature="e#9261#12229#0" expanded="true" />
-            <element signature="e#12228#12229#0" expanded="true" />
-            <element signature="e#13868#13898#0" expanded="true" />
-            <element signature="e#13958#13999#0" expanded="true" />
-            <element signature="e#14737#14781#0" expanded="true" />
-            <element signature="method#identifyFingerprint#0;class#SendMessageToWear#0" expanded="false" />
-            <element signature="method#createAssetFromBitmap#0;class#SendMessageToWear#0" expanded="false" />
-            <element signature="e#20166#20304#0" expanded="true" />
-            <element signature="e#20303#20304#0" expanded="true" />
-            <element signature="class#LocaleLoadRunnable#0;class#SendMessageToWear#0" expanded="false" />
-            <element signature="class#SystemEvents#0;class#SendMessageToWear#0" expanded="false" />
-            <element signature="class#StatusEvents#0;class#SendMessageToWear#0" expanded="false" />
-            <element signature="class#BundleIngestEvents#0;class#SendMessageToWear#0" expanded="false" />
-            <element signature="method#getAssetAsString#0;class#SendMessageToWear#0" expanded="false" />
-            <element signature="method#showError#0;class#SendMessageToWear#0" expanded="false" />
-            <element signature="e#29172#29173#0" expanded="true" />
-            <element signature="e#29219#29220#0" expanded="true" />
-            <element signature="e#30480#30513#0" expanded="true" />
-            <element signature="e#31733#31766#0" expanded="true" />
-            <element signature="e#33751#33775#0" expanded="true" />
-            <element signature="e#33806#33832#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/GracenoteMusicID.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4919571">
-          <caret line="373" column="16" selection-start-line="373" selection-start-column="16" selection-end-line="373" selection-end-column="16" />
+        <state vertical-scroll-proportion="-10.16">
+          <caret line="376" column="0" selection-start-line="376" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
           <folding>
             <element signature="e#9026#9515#0" expanded="true" />
-            <element signature="e#9254#9471#0" expanded="true" />
-            <element signature="e#9470#9471#0" expanded="true" />
             <element signature="e#9514#9515#0" expanded="true" />
-            <element signature="e#11567#11597#0" expanded="true" />
-            <element signature="e#13639#13747#0" expanded="true" />
-            <element signature="e#13746#13747#0" expanded="true" />
+            <element signature="method#loadBitmapFromAsset#0;class#GracenoteMusicID#0" expanded="false" />
+            <element signature="class#MusicIDEvents#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#LocaleLoadRunnable#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#LocalBundleIngestRunnable#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#SystemEvents#0;class#GracenoteMusicID#0" expanded="false" />
@@ -3735,6 +3669,24 @@
             <element signature="class#BundleIngestEvents#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="method#getAssetAsString#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="method#showError#0;class#GracenoteMusicID#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/SendMessageToWear.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31903946">
+          <caret line="414" column="19" selection-start-line="414" selection-start-column="19" selection-end-line="414" selection-end-column="19" />
+          <folding>
+            <element signature="class#12340:14354" expanded="false" />
+            <element signature="e#20486#20624#0" expanded="true" />
+            <element signature="e#20623#20624#0" expanded="true" />
+            <element signature="class#LocaleLoadRunnable#0;class#SendMessageToWear#0" expanded="false" />
+            <element signature="class#SystemEvents#0;class#SendMessageToWear#0" expanded="false" />
+            <element signature="class#StatusEvents#0;class#SendMessageToWear#0" expanded="false" />
+            <element signature="class#BundleIngestEvents#0;class#SendMessageToWear#0" expanded="false" />
+            <element signature="method#getAssetAsString#0;class#SendMessageToWear#0" expanded="false" />
+            <element signature="method#showError#0;class#SendMessageToWear#0" expanded="false" />
           </folding>
         </state>
       </provider>

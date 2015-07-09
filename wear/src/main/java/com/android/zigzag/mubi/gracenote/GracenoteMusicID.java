@@ -291,7 +291,7 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
         }).addApi(Wearable.API).build();
 
 
-        timer = new Timer();
+       // timer = new Timer();
        // timer.schedule(doAsynchronousTask, 0, 10000);
 	}
 
@@ -315,7 +315,11 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
     @Override
 	protected void onResume() {
 		super.onResume();
-
+		if(timer != null){
+			timer.cancel();
+			timer = null;
+		}
+		timer = new Timer();
 		timer.schedule(doAsynchronousTask, 0, 10000);
 
         int connectionResult = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
@@ -365,22 +369,24 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
 			if (event.getType() == DataEvent.TYPE_CHANGED) {
 				// Check the data path
 				String path = event.getDataItem().getUri().getPath();
-				if (path.equals(WEARABLE_DATA_PATH)) {}
-				dataMap = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
-				Log.v(TAG, "DataMap received on watch: " + dataMap);
+				if (path.equals(WEARABLE_DATA_PATH)) {
+					dataMap = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
+					Log.v(TAG, "DataMap received on watch: " + dataMap);
 
-				DataMapItem dataMapItem = DataMapItem.fromDataItem(event.getDataItem());
-				Asset profileAsset = dataMapItem.getDataMap().getAsset("coverImg");
-				final Bitmap bitmap = loadBitmapFromAsset(profileAsset);
-				Log.d("asd", bitmap.getByteCount() + "");
+					String albumTitle = dataMap.getString("albumTitle");
 
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						coverImg.setImageBitmap(bitmap);
-					}
-				});
-
+//					DataMapItem dataMapItem = DataMapItem.fromDataItem(event.getDataItem());
+//					Asset profileAsset = dataMapItem.getDataMap().getAsset("coverImg");
+//					final Bitmap bitmap = loadBitmapFromAsset(profileAsset);
+//					Log.d("asd", bitmap.getByteCount() + "");
+//
+//					runOnUiThread(new Runnable() {
+//						@Override
+//						public void run() {
+//							coverImg.setImageBitmap(bitmap);
+//						}
+//					});
+				}
 			}
 		}
 	}
