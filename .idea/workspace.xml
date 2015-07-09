@@ -48,8 +48,8 @@
       <file leaf-file-name="SendMessageToWear.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/SendMessageToWear.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.3503103">
-              <caret line="169" column="12" selection-start-line="169" selection-start-column="12" selection-end-line="169" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.021118013">
+              <caret line="343" column="0" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="class#LocaleLoadRunnable#0;class#SendMessageToWear#0" expanded="false" />
@@ -2774,7 +2774,7 @@
       <recent name="C:\Users\zigzag\Documents\mubiq\wear\src\main\res\layout" />
     </key>
   </component>
-  <component name="RunManager" selected="Android Application.wear">
+  <component name="RunManager" selected="Android Application.mobile">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -3475,6 +3475,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18453188">
           <caret line="8" column="66" selection-start-line="8" selection-start-column="66" selection-end-line="8" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3587,8 +3588,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/SendMessageToWear.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.3503103">
-          <caret line="169" column="12" selection-start-line="169" selection-start-column="12" selection-end-line="169" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.021118013">
+          <caret line="343" column="0" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#LocaleLoadRunnable#0;class#SendMessageToWear#0" expanded="false" />

@@ -47,6 +47,7 @@ import com.gracenote.gnsdk.GnList;
 import com.gracenote.gnsdk.GnLocale;
 import com.gracenote.gnsdk.GnLocaleGroup;
 import com.gracenote.gnsdk.GnLookupData;
+import com.gracenote.gnsdk.GnLookupLocalStream;
 import com.gracenote.gnsdk.GnLookupLocalStreamIngest;
 import com.gracenote.gnsdk.GnLookupLocalStreamIngestStatus;
 import com.gracenote.gnsdk.GnManager;
@@ -167,7 +168,7 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
             gnUser = new GnUser(new GnUserStore(context), gnsdkClientId, gnsdkClientTag, TAG);
 
             GnStorageSqlite.enable();
-            
+
 
             // enable local MusicID-Stream recognition (GNSDK storage provider must be enabled as pre-requisite)
             //GnLookupLocalStream.enable();
@@ -187,7 +188,7 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
             gnMusicId = new GnMusicId(gnUser);
             gnMusicId.options().lookupData(GnLookupData.kLookupDataContent, true);
             gnMusicId.options().lookupData(GnLookupData.kLookupDataSonicData, true);
-            gnMusicId.options().lookupData(GnLookupData.kLookupDataInvalid, true);
+            gnMusicId.options().preferResultCoverart(true);
             gnMusicId.options().resultSingle(true);
 
         } catch (GnException e) {
@@ -336,11 +337,9 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
                 int i = 1;
                 while (iterator.hasNext()) {
                     GnAlbum album = iterator.next();
-                    Log.d("ALBUM","1 "+album.coverArt().mimeType());
-                    Log.d("ALBUM","2 "+album.coverArt().Id());
-                    Log.d("ALBUM","3 "+album.coverArt().asset(GnImageSize.kImageSizeThumbnail).toString());
 
-                    String coverArtUrl = album.coverArt().asset(GnImageSize.kImageSizeMedium).url();
+
+                    String coverArtUrl = album.coverArt().asset(GnImageSize.kImageSizeThumbnail).url();
 
 
                     albumTitle = album.title().display();
