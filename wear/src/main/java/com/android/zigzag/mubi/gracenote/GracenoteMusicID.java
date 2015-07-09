@@ -396,6 +396,13 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
 					trackText = dataMap.getString("track");
 					nearestAddressText = dataMap.getString("nearestAddress");
 
+					final Asset profileAsset = dataMap.getAsset("coverImg");
+					Bitmap bitmap = null;
+					if(profileAsset != null) {
+						bitmap = loadBitmapFromAsset(profileAsset);
+					}
+					final Bitmap finalBitmap = bitmap;
+
 					runOnUiThread(new Runnable() {
 						@Override
 						public void run() {
@@ -403,24 +410,11 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
 							artist.setText(artistText);
 							track.setText(trackText);
 							nearestAddress.setText(nearestAddressText);
+							if(profileAsset != null) {
+								coverImg.setImageBitmap(finalBitmap);
+							}
 						}
 					});
-
-//					DataMapItem dataMapItem = DataMapItem.fromDataItem(event.getDataItem());
-//					Asset profileAsset = dataMapItem.getDataMap().getAsset("coverImg");
-//					final Bitmap bitmap = loadBitmapFromAsset(profileAsset);
-//
-//					Log.d("bitmap.getByteCount", bitmap.getByteCount() + "");
-//
-//
-//					runOnUiThread(new Runnable() {
-//						@Override
-//						public void run() {
-//							coverImg.setImageBitmap(bitmap);
-//						}
-//					});
-
-//					dataMap.clear();
 				}
 			}
 		}
@@ -430,15 +424,14 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
 		if (asset == null) {
 			throw new IllegalArgumentException("Asset must be non-null");
 		}
-		ConnectionResult result =
-				mGoogleApiClient.blockingConnect(1000, TimeUnit.MILLISECONDS);
+		ConnectionResult result = mGoogleApiClient.blockingConnect(500, TimeUnit.MILLISECONDS);
 		if (!result.isSuccess()) {
 			return null;
 		}
 		// convert asset into a file descriptor and block until it's ready
-		InputStream assetInputStream = Wearable.DataApi.getFdForAsset(
-				mGoogleApiClient, asset).await().getInputStream();
-		mGoogleApiClient.disconnect();
+		InputStream assetInputStream = Wearable.DataApi.getFdForAsset(mGoogleApiClient, asset).await().getInputStream();
+
+		//mGoogleApiClient.disconnect();
 
 		if (assetInputStream == null) {
 			Log.w(TAG, "Requested an unknown Asset.");

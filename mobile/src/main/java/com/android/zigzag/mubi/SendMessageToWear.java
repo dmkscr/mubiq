@@ -361,7 +361,7 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
                 while (iterator.hasNext()) {
                     GnAlbum album = iterator.next();
 
-                    coverArtUrl = album.coverArt().asset(GnImageSize.kImageSizeThumbnail).url();
+                    coverArtUrl = album.coverArt().asset(GnImageSize.kImageSizeLarge).url();
                     coverArtUrl = "http://" + coverArtUrl;
 
                     albumTitle = album.title().display();
