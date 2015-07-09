@@ -24,7 +24,7 @@ import java.util.List;
 
 public class SendMessageToMobile extends Activity {
 
-    private String                          TAG                            = "Mubi - Send Fingerprint";
+    private String                          TAG                            = "Mubiq";
 
     private final String                    MESSAGE_PATH                   = "/message";
 
@@ -92,12 +92,10 @@ public class SendMessageToMobile extends Activity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        messageButton.setEnabled(false);
+                        // tbd
                     }
                 });
                 Intent intent = new Intent(getApplicationContext(), ConfirmationActivity.class);
-                intent.putExtra(ConfirmationActivity.EXTRA_ANIMATION_TYPE, ConfirmationActivity.FAILURE_ANIMATION);
-                intent.putExtra(ConfirmationActivity.EXTRA_MESSAGE, getString(R.string.peer_disconnected));
                 startActivity(intent);
             }
         };
@@ -142,7 +140,6 @@ public class SendMessageToMobile extends Activity {
                                     Log.d(TAG, "Id: " + remoteNodeId);
                                 }
                             }
-                            messageButton.setEnabled(true);
                         }
                     }
                 });
@@ -178,11 +175,9 @@ public class SendMessageToMobile extends Activity {
 
     @Override
     protected void onPause() {
-        // Unregister Node and Message listeners, disconnect GoogleApiClient and disable buttons
         Wearable.NodeApi.removeListener(mGoogleApiClient, nodeListener);
         Wearable.MessageApi.removeListener(mGoogleApiClient, messageListener);
         mGoogleApiClient.disconnect();
-        messageButton.setEnabled(false);
         super.onPause();
     }
 

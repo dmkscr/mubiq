@@ -114,6 +114,7 @@ public final class HistoryDetails extends Activity {
 		public void bindView(View view, Context context, final Cursor cursor) {
 			coverArtImage = (ImageView) view.findViewById(R.id.CoverArtImage);
 
+			//TODO: coverart!!
 			byte[] theByteArray = cursor.getBlob(4);
 			if (theByteArray != null) {
 				Bitmap bitmap = BitmapFactory.decodeByteArray(theByteArray, 0,
@@ -171,6 +172,7 @@ public final class HistoryDetails extends Activity {
 		adapter = new HistoryListAdapter(HistoryDetails.this, cursor);
 		historylist.setAdapter(adapter);
 	}
+	//TODO: get time
 	public String currentTimeZonedate(String date) {
 		String currentDate = null;
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy - HH:mm:ss");

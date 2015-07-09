@@ -40,43 +40,43 @@ public class PostActivity extends Activity {
 //    postEditText = (EditText) findViewById(R.id.post_edittext);
 
 //    postButton = (Button) findViewById(R.id.post_button);
-    postButton.setOnClickListener(new OnClickListener() {
-      public void onClick(View v) {
-        post();
-      }
-    });
+//    postButton.setOnClickListener(new OnClickListener() {
+//      public void onClick(View v) {
+//        post();
+//      }
+//    });
 
   }
 
-  private void post () {
-    String text = postEditText.getText().toString().trim();
-
-    // Set up a progress dialog
-    final ProgressDialog dialog = new ProgressDialog(PostActivity.this);
-    dialog.setMessage(getString(R.string.progress_post));
-    dialog.show();
-
-    // Create a post.
-    MubiqPost post = new MubiqPost();
-
-    // Set the location to the current user's location
-    post.setLocation(geoPoint);
-    post.setText(text);
-    post.setUser(ParseUser.getCurrentUser());
-    ParseACL acl = new ParseACL();
-
-    // Give public read access
-    acl.setPublicReadAccess(true);
-    post.setACL(acl);
-
-    // Save the post
-    post.saveInBackground(new SaveCallback() {
-      @Override
-      public void done(ParseException e) {
-        dialog.dismiss();
-        finish();
-      }
-    });
-  }
+//  private void post () {
+//    String text = postEditText.getText().toString().trim();
+//
+//    // Set up a progress dialog
+//    final ProgressDialog dialog = new ProgressDialog(PostActivity.this);
+//    dialog.setMessage(getString(R.string.progress_post));
+//    dialog.show();
+//
+//    // Create a post.
+//    MubiqPost post = new MubiqPost();
+//
+//    // Set the location to the current user's location
+//    post.setLocation(geoPoint);
+//    post.setText(text);
+//    post.setUser(ParseUser.getCurrentUser());
+//    ParseACL acl = new ParseACL();
+//
+//    // Give public read access
+//    acl.setPublicReadAccess(true);
+//    post.setACL(acl);
+//
+//    // Save the post
+//    post.saveInBackground(new SaveCallback() {
+//      @Override
+//      public void done(ParseException e) {
+//        dialog.dismiss();
+//        finish();
+//      }
+//    });
+//  }
 
 }

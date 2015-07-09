@@ -106,59 +106,25 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
-/**
- * <p>
- * This reference application introduces the basic coding techniques for
- * accessing Gracenote's file and stream recognition technology, and metadata and 
- * content (such as Cover Art).
- * </p>
- * <p>
- * Recognize all audio in MediaStore by pressing "LibraryID" button, utilizing file
- * recognition technology.
- * Recognize audio from the device's microphone by pressing the "IDNow" button,
- * utilizing stream recognition technology.
- * </p>
- * <p>
- * Once a file or a stream has been recognized its metadata and Cover Art is displayed 
- * in the main results pane. Note to save memory only the first 10 results display Cover
- * Art. Additional detail can be viewed by pressing on a result.
- * </p>
- */
 public class GracenoteMusicID extends Activity {
 
-	// set these values before running the sample
-	static final String gnsdkClientId 			= "9148416";
-	static final String gnsdkClientTag 			= "EA1C43BD1FFE51ED7ECF272A2F04DA45";
-	static final String gnsdkLicenseFilename 	= "license.txt";	// app expects this file as an "asset"
-	private static final String gnsdkLogFilename 		= "sample.log";
-	private static final String appString				= "GFM Sample";
-    private static final String TAG = appString;
+	static final String                     gnsdkClientId 			= "9148416";
+	static final String                     gnsdkClientTag 			= "EA1C43BD1FFE51ED7ECF272A2F04DA45";
+	static final String                     gnsdkLicenseFilename 	= "license.txt";
+	private static final String             TAG				        = "Mubiq";
 	
-	private Activity activity;
-	private Context context;
-	
-	// ui objects
-	private TextView statusText;
-	private LinearLayout linearLayoutVisContainer;
-	private boolean						visShowing;
+	private Activity                        activity;
+	private Context                         context;
 
-	protected ViewGroup metadataListing;
-	private final int 	metadataMaxNumImages 	= 10;
+    private Timer                           timer;
+    protected volatile long				    lastLookup_startTime;
 
-	// Gracenote objects
-	private GnManager 					gnManager;
-	private GnUser 						gnUser;
-	private GnMusicId        			gnMusicIdStream;
-	private IGnAudioSource				gnMicrophone;
-	
-	// store some tracking info about the most recent MusicID-Stream lookup
-	protected volatile boolean 			lastLookup_local		 = false;	// indicates whether the match came from local storage
-	protected volatile long				lastLookup_matchTime 	 = 0;  		// total lookup time for query
-	protected volatile long				lastLookup_startTime;  				// start time of query
-	private volatile boolean			audioProcessingStarted   = false;
-	private volatile boolean			analyzingCollection 	 = false;
-	private volatile boolean			analyzeCancelled 	 	 = false;
+	protected ViewGroup                     metadataListing;
+
+	private GnManager 					    gnManager;
+	private GnUser 						    gnUser;
+	private GnMusicId        			    gnMusicId;
+	private IGnAudioSource				    gnMicrophone;
 
     private GoogleApiClient                 mGoogleApiClient;
     private NodeApi.NodeListener            nodeListener;
@@ -167,7 +133,6 @@ public class GracenoteMusicID extends Activity {
     private final String                    MESSAGE_PATH                   = "/message";
     private Handler                         handler;
 
-	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -195,66 +160,50 @@ public class GracenoteMusicID extends Activity {
 		}
 		
 		try {
-			
-			// GnManager must be created first, it initializes GNSDK
+
 			gnManager = new GnManager( context, gnsdkLicense, GnLicenseInputMode.kLicenseInputModeString );
+
+			gnManager.systemEventHandler(new SystemEvents());
 			
-			// provide handler to receive system events, such as locale update needed
-			gnManager.systemEventHandler( new SystemEvents() );
-			
-			// get a user, if no user stored persistently a new user is registered and stored 
-			// Note: Android persistent storage used, so no GNSDK storage provider needed to store a user
-			gnUser = new GnUser( new GnUserStore(context), gnsdkClientId, gnsdkClientTag, appString );
+			// get a user, if no user stored persistently a new user is registered and stored
+			gnUser = new GnUser( new GnUserStore(context), gnsdkClientId, gnsdkClientTag, TAG );
 
 			// enable storage provider allowing GNSDK to use its persistent stores
 			GnStorageSqlite.enable();
 			
 			// enable local MusicID-Stream recognition (GNSDK storage provider must be enabled as pre-requisite)
-			//GnLookupLocalStream.enable();
-			
-			// Loads data to support the requested locale, data is downloaded from Gracenote Service if not
-			// found in persistent storage. Once downloaded it is stored in persistent storage (if storage
-			// provider is enabled). Download and write to persistent storage can be lengthy so perform in 
-			// another thread
+			// GnLookupLocalStream.enable();
+
+			// Download and write to persistent storage can be lengthy so perform in another thread
 			Thread localeThread = new Thread(
-									new LocaleLoadRunnable(GnLocaleGroup.kLocaleGroupMusic,
-										GnLanguage.kLanguageEnglish, 
-										GnRegion.kRegionGlobal,
-										GnDescriptor.kDescriptorDefault,
-										gnUser) 
-									);
+                new LocaleLoadRunnable(GnLocaleGroup.kLocaleGroupMusic,
+                    GnLanguage.kLanguageEnglish,
+                    GnRegion.kRegionGlobal,
+                    GnDescriptor.kDescriptorDefault,
+                    gnUser)
+            );
 			localeThread.start();	
 			
 			// Ingest MusicID-Stream local bundle, perform in another thread as it can be lengthy
 			Thread ingestThread = new Thread( new LocalBundleIngestRunnable(context) );
 			ingestThread.start();									
-			
-			// Set up for continuous listening from the microphone
-			// - create microphone, this can live for lifetime of app
-			// - create GnMusicIdStream instance, this can live for lifetime of app
-			// - configure
-			// Starting and stopping continuous listening should be started and stopped
-			// based on Activity life-cycle, see onPause and onResume for details
-			// To show audio visualization we wrap GnMic in a visualization adapter
-			gnMicrophone = new GnMic();
-			gnMusicIdStream = new GnMusicId(gnUser,new MusicIDEvents());
 
-			gnMusicIdStream.options().lookupData(GnLookupData.kLookupDataContent, true);
-			gnMusicIdStream.options().lookupData(GnLookupData.kLookupDataSonicData, true);
-			gnMusicIdStream.options().resultSingle( true );
+			gnMicrophone = new GnMic();
+			gnMusicId = new GnMusicId(gnUser,new MusicIDEvents());
+
+            gnMusicId.options().lookupData(GnLookupData.kLookupDataContent, true);
+            gnMusicId.options().lookupData(GnLookupData.kLookupDataSonicData, true);
+            gnMusicId.options().resultSingle( true);
+
+        } catch ( GnException e ) {
 			
-			// Retain GnMusicIdStream object so we can cancel an active identification if requested
-		//	streamIdObjects.add( gnMusicIdStream );
-			
-		} catch ( GnException e ) {
-			
-			Log.e(appString, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
+			Log.e(TAG, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
 			showError( e.errorAPI() + ": " + e.errorDescription() );
 			return;
 			
 		} catch ( Exception e ) {
 			if(e.getMessage() != null){
-				Log.e(appString, e.getMessage());
+				Log.e(TAG, e.getMessage());
 				showError( e.getMessage() );
 			}
 			else{
@@ -264,7 +213,7 @@ public class GracenoteMusicID extends Activity {
 			
 		}
 
-        // Create NodeListener that enables buttons when a node is connected and disables buttons when a node is disconnected
+
         nodeListener = new NodeApi.NodeListener() {
             @Override
             public void onPeerConnected(Node node) {
@@ -276,7 +225,8 @@ public class GracenoteMusicID extends Activity {
                 remoteNodeId= "";
             }
         };
-        // Create MessageListener that receives messages sent from mobile
+
+
         messageListener = new MessageApi.MessageListener() {
             @Override
             public void onMessageReceived(MessageEvent messageEvent) {
@@ -284,18 +234,14 @@ public class GracenoteMusicID extends Activity {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-
-                            Long tsLong = System.currentTimeMillis() / 1000;
-                            String ts = tsLong.toString();
-
-                            Log.v(TAG, "\n" + getString(R.string.received_message) + " " + ts);
-
+                            // receiver for fingerprint result from mobile
                         }
                     });
                 }
             }
         };
-        // Create GoogleApiClient
+
+
         mGoogleApiClient = new GoogleApiClient.Builder(getApplicationContext()).addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
             @Override
             public void onConnected(Bundle bundle) {
@@ -327,7 +273,7 @@ public class GracenoteMusicID extends Activity {
         }).addApi(Wearable.API).build();
 
         final Handler handler = new Handler();
-        Timer timer = new Timer();
+        timer = new Timer();
         TimerTask doAsynchronousTask = new TimerTask() {
             @Override
             public void run() {
@@ -335,10 +281,10 @@ public class GracenoteMusicID extends Activity {
                     @SuppressWarnings("unchecked")
                     public void run() {
                         try {
-                            identifyIntervall();
+                            fingerprinting();
                         }
                         catch (Exception e) {
-                            Log.d(appString, "identifyIntervall not called" + e.getMessage());
+                            Log.d( TAG, "fingerprint not called: " + e.getMessage());
                         }
                     }
                 });
@@ -348,28 +294,22 @@ public class GracenoteMusicID extends Activity {
 	}
 
 
-
     @Override
 	protected void onResume() {
 		super.onResume();
 		
-		if ( gnMusicIdStream != null ) {
-			
-			// restart itnerval
-			
-		}
-		
-		// tmp - work around temporary behavior where
-		// calling audioProcessStop stops all events, including
-		// cancelled notification, from a pending identification
-		if ( gnManager != null ) {
+		if ( gnMusicId != null ) {
+            try {
+                fingerprinting();
+            }
+            catch (Exception e) {
+                Log.d( TAG, "fingerprint not called" + e.getMessage());
+            }
 		}
 
-        // Check is Google Play Services available
         int connectionResult = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
 
         if (connectionResult != ConnectionResult.SUCCESS) {
-            // Google Play Services is NOT available. Show appropriate error dialog
             GooglePlayServicesUtil.showErrorDialogFragment(connectionResult, this, 0, new DialogInterface.OnCancelListener() {
                 @Override
                 public void onCancel(DialogInterface dialog) {
@@ -391,51 +331,43 @@ public class GracenoteMusicID extends Activity {
 
 		super.onPause();
 		
-		if ( gnMusicIdStream != null ) {
-
+		if ( gnMusicId != null ) {
+            timer.cancel();
 		}
 	}
 
     private class MusicIDEvents implements IGnStatusEvents {
         @Override
         public void statusEvent(GnStatus gnStatus, long l, long l1, long l2, IGnCancellable iGnCancellable) {
-            Log.v(appString, "MusicIDEvents: " + gnStatus.toString());
+            Log.v(TAG, "MusicIDEvents: " + gnStatus.toString());
         }
     }
 
     /**
-     * Record every 30 sec and try to find a match
+     * Record audio and make fingerprint to send to phone
      */
-    public void identifyIntervall() {
+    public void fingerprinting() {
 
         try {
 
-            gnMusicIdStream.fingerprintFromSource(gnMicrophone, GnFingerprintType.kFingerprintTypeStream6);
-            String fingerprint = gnMusicIdStream.fingerprintDataGet();
+            gnMusicId.fingerprintFromSource(gnMicrophone, GnFingerprintType.kFingerprintTypeStream6);
+            String fingerprint = gnMusicId.fingerprintDataGet();
 
             Wearable.MessageApi.sendMessage(mGoogleApiClient, remoteNodeId, MESSAGE_PATH, fingerprint.getBytes(Charset.forName("UTF-8"))).setResultCallback(new ResultCallback<MessageApi.SendMessageResult>() {
                 @Override
                 public void onResult(MessageApi.SendMessageResult sendMessageResult) {
-                    Log.d(TAG, "sendMessageResult " + sendMessageResult);
-                    Intent intent = new Intent(getApplicationContext(), ConfirmationActivity.class);
                     if (sendMessageResult.getStatus().isSuccess()) {
-                        Log.d(TAG, "sendMessageResult status (success): " + sendMessageResult.getStatus().isSuccess());
-//                        intent.putExtra(ConfirmationActivity.EXTRA_ANIMATION_TYPE, ConfirmationActivity.SUCCESS_ANIMATION);
-//                        intent.putExtra(ConfirmationActivity.EXTRA_MESSAGE, getString(R.string.message_sent));
+                        Log.d(TAG, "sendMessageResult (success): " + sendMessageResult);
                     } else {
-                        Log.d(TAG, "sendMessageResult status (failure): " + sendMessageResult.getStatus().isSuccess());
-//                        intent.putExtra(ConfirmationActivity.EXTRA_ANIMATION_TYPE, ConfirmationActivity.FAILURE_ANIMATION);
-//                        intent.putExtra(ConfirmationActivity.EXTRA_MESSAGE, getString(R.string.error_message));
+                        Log.d(TAG, "sendMessageResult (fail): " + sendMessageResult);
                     }
-//                        startActivity(intent);
                 }
             });
-            Log.v(appString, "result" + fingerprint);
-            lastLookup_startTime = SystemClock.elapsedRealtime();
+            Log.v(TAG, "result: " + fingerprint);
 
         } catch (GnException e) {
 
-            Log.e(appString, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
+            Log.e(TAG, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
             showError( e.errorAPI() + ": " +  e.errorDescription() );
 
         }
@@ -475,7 +407,7 @@ public class GracenoteMusicID extends Activity {
 				locale.setGroupDefault();
 
 			} catch (GnException e) {
-				Log.e(appString, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
+				Log.e(TAG, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
 			}
 		}
 	}
@@ -494,13 +426,7 @@ public class GracenoteMusicID extends Activity {
 		public void run() {
 			try {
 
-				// our bundle is delivered as a package asset
-				// to ingest the bundle access it as a stream and write the bytes to
-				// the bundle ingester
-				// bundles should not be delivered with the package as this, rather they
-				// should be downloaded from your own online service
-
-				InputStream bundleInputStream 	= null;
+				InputStream bundleInputStream 	    = null;
 				int				ingestBufferSize	= 1024;
 				byte[] 			ingestBuffer 		= new byte[ingestBufferSize];
 				int				bytesRead			= 0;
@@ -528,7 +454,7 @@ public class GracenoteMusicID extends Activity {
 				ingester.flush();
 
 			} catch (GnException e) {
-				Log.e(appString, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
+				Log.e(TAG, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
 			}
 
 		}
@@ -546,7 +472,7 @@ public class GracenoteMusicID extends Activity {
 			try {
 				locale.update( gnUser );
 			} catch (GnException e) {
-				Log.e(appString, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
+				Log.e(TAG, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
 			}
 		}
 
@@ -556,15 +482,16 @@ public class GracenoteMusicID extends Activity {
 			try {
 				list.update( gnUser );
 			} catch (GnException e) {
-				Log.e(appString, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
+				Log.e(TAG, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
 			}
 		}
 
 		@Override
 		public void systemMemoryWarning(long currentMemorySize, long warningMemorySize) {
-			// only invoked if a memory warning limit is configured
+			Log.v(TAG, "memory warning limit (only if configured)");
 		}
 	}
+
 
 	/**
 	 * GNSDK status event delegate
@@ -573,7 +500,7 @@ public class GracenoteMusicID extends Activity {
 
 		@Override
 		public void statusEvent( GnStatus status, long percentComplete, long bytesTotalSent, long bytesTotalReceived, IGnCancellable cancellable ) {
-
+            Log.v(TAG, "IGnStatusEvents statusEvent (status): " + status);
 		}
 
 	};
@@ -585,7 +512,7 @@ public class GracenoteMusicID extends Activity {
 
 		@Override
 		public void statusEvent(GnLookupLocalStreamIngestStatus status, String bundleId, IGnCancellable canceller) {
-
+            Log.v(TAG, "IGnLookupLocalStreamIngestEvents statusEvent (status): " + status);
 		}
 	}
 
@@ -609,12 +536,12 @@ public class GracenoteMusicID extends Activity {
 				assetStream.close();
 
 			}else{
-				Log.e(appString, "Asset not found:" + assetName);
+				Log.e(TAG, "Asset not found:" + assetName);
 			}
 
 		} catch (IOException e) {
 
-			Log.e(appString, "Error getting asset as string: " + e.getMessage());
+			Log.e(TAG, "Error getting asset as string: " + e.getMessage());
 
 		}
 
@@ -626,9 +553,9 @@ public class GracenoteMusicID extends Activity {
 	 * Helper to show and error
 	 */
 	private void showError( String errorMessage ) {
-
+        Log.v(TAG, "showError (errorMessage): " + errorMessage);
 	}
 
-	
+
 	
 }

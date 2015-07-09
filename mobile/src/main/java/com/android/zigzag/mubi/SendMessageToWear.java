@@ -2,6 +2,7 @@ package com.android.zigzag.mubi;
 
 import android.app.Activity;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -39,6 +40,7 @@ import com.gracenote.gnsdk.GnAlbumIterator;
 import com.gracenote.gnsdk.GnDescriptor;
 import com.gracenote.gnsdk.GnException;
 import com.gracenote.gnsdk.GnFingerprintType;
+import com.gracenote.gnsdk.GnImageSize;
 import com.gracenote.gnsdk.GnLanguage;
 import com.gracenote.gnsdk.GnLicenseInputMode;
 import com.gracenote.gnsdk.GnList;
@@ -48,7 +50,6 @@ import com.gracenote.gnsdk.GnLookupData;
 import com.gracenote.gnsdk.GnLookupLocalStreamIngest;
 import com.gracenote.gnsdk.GnLookupLocalStreamIngestStatus;
 import com.gracenote.gnsdk.GnManager;
-import com.gracenote.gnsdk.GnMic;
 import com.gracenote.gnsdk.GnMusicId;
 import com.gracenote.gnsdk.GnRegion;
 import com.gracenote.gnsdk.GnResponseAlbums;
@@ -61,7 +62,12 @@ import com.gracenote.gnsdk.IGnCancellable;
 import com.gracenote.gnsdk.IGnLookupLocalStreamIngestEvents;
 import com.gracenote.gnsdk.IGnStatusEvents;
 import com.gracenote.gnsdk.IGnSystemEvents;
+import com.parse.ParseACL;
+import com.parse.ParseException;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -75,54 +81,57 @@ import java.util.Map;
 // MainActivity
 public class SendMessageToWear extends ActionBarActivity implements ResultCallback<Status> {
 
-    private String                          TAG                             = "Mubiq - Send Fingerprint";
+    private String TAG = "Mubiq";
 
     /**
      * Messaging
      */
-    private final String                    MESSAGE_PATH                    = "/message";
-    private EditText                        receivedMessagesEditText;
-    private View                            messageButton;
-    private GoogleApiClient                 mGoogleApiClient;
-    private NodeApi.NodeListener            nodeListener;
-    private String                          remoteNodeId;
-    private MessageApi.MessageListener      messageListener;
-    private Handler                         handler;
+    private final String MESSAGE_PATH = "/message";
+    private EditText receivedMessagesEditText;
+    private View messageButton;
+    private GoogleApiClient mGoogleApiClient;
+    private NodeApi.NodeListener nodeListener;
+    private String remoteNodeId;
+    private MessageApi.MessageListener messageListener;
+    private Handler handler;
 
     /**
      * Location grabbing
      */
-    private Location                        mLastLocation;
-    private String                          mLastUpdateTime;
-    private AddressResultReceiver           mResultReceiver;
-    private boolean                         mAddressRequested;
-    private String                          mAddressOutput;
-    protected static final String           ADDRESS_REQUESTED_KEY           = "address-request-pending";
-    protected static final String           LOCATION_ADDRESS_KEY            = "location-address";
+    private Location mLastLocation;
+    private String mLastUpdateTime;
+    private AddressResultReceiver mResultReceiver;
+    private boolean mAddressRequested;
+    private String mAddressOutput;
+    protected static final String ADDRESS_REQUESTED_KEY = "address-request-pending";
+    protected static final String LOCATION_ADDRESS_KEY = "location-address";
 
     /**
      * Geofencing
      */
-    protected ArrayList<Geofence>           mGeofenceList;
-    private boolean                         mGeofencesAdded;
-    private PendingIntent                   mGeofencePendingIntent;
-    private SharedPreferences               mSharedPreferences;
+    protected ArrayList<Geofence> mGeofenceList;
+    private boolean mGeofencesAdded;
+    private PendingIntent mGeofencePendingIntent;
+    private SharedPreferences mSharedPreferences;
 
-    // set these values before running the sample
-    static final String gnsdkClientId 			= "9148416";
-    static final String gnsdkClientTag 			= "EA1C43BD1FFE51ED7ECF272A2F04DA45";
-    static final String gnsdkLicenseFilename 	= "license.txt";	// app expects this file as an "asset"
-    private static final String gnsdkLogFilename 		= "sample.log";
-    private static final String appString				= "GFM Sample";
+    private ParseGeoPoint geoPoint;
+
+    /**
+     * Gracenote
+     */
+    static final String gnsdkClientId = "9148416";
+    static final String gnsdkClientTag = "EA1C43BD1FFE51ED7ECF272A2F04DA45";
+    static final String gnsdkLicenseFilename = "license.txt";
+    private GnManager gnManager;
+    private GnUser gnUser;
+    private GnMusicId gnMusicId;
+
+    private String albumTitle = "";
+    private String artist = "";
+    private String track = "";
 
     private Activity activity;
     private Context context;
-
-    // Gracenote objects
-    private GnManager 					gnManager;
-    private GnUser 						gnUser;
-    private GnMusicId        			gnMusicId;
-    private IGnAudioSource gnMicrophone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,52 +139,39 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
         setContentView(R.layout.message_to_wear);
 
         activity = this;
-        context  = this.getApplicationContext();
+        context = this.getApplicationContext();
         handler = new Handler();
 
-        receivedMessagesEditText = (EditText) findViewById(R.id.receivedMessagesEditText);
-        messageButton = findViewById(R.id.messageButton);
-
         // check the client id and tag have been set
-        if ( (gnsdkClientId == null) || (gnsdkClientTag == null) ){
-            showError( "Please set Client ID and Client Tag" );
+        if ((gnsdkClientId == null) || (gnsdkClientTag == null)) {
+            showError("Please set Client ID and Client Tag");
             return;
         }
 
         // get the gnsdk license from the application assets
         String gnsdkLicense = null;
-        if ( (gnsdkLicenseFilename == null) || (gnsdkLicenseFilename.length() == 0) ){
-            showError( "License filename not set" );
+        if ((gnsdkLicenseFilename == null) || (gnsdkLicenseFilename.length() == 0)) {
+            showError("License filename not set");
         } else {
-            gnsdkLicense = getAssetAsString( gnsdkLicenseFilename );
-            if ( gnsdkLicense == null ){
-                showError( "License file not found: " + gnsdkLicenseFilename );
+            gnsdkLicense = getAssetAsString(gnsdkLicenseFilename);
+            if (gnsdkLicense == null) {
+                showError("License file not found: " + gnsdkLicenseFilename);
                 return;
             }
         }
 
         try {
 
-            // GnManager must be created first, it initializes GNSDK
-            gnManager = new GnManager( context, gnsdkLicense, GnLicenseInputMode.kLicenseInputModeString );
+            gnManager = new GnManager(context, gnsdkLicense, GnLicenseInputMode.kLicenseInputModeString);
+            gnManager.systemEventHandler(new SystemEvents());
+            gnUser = new GnUser(new GnUserStore(context), gnsdkClientId, gnsdkClientTag, TAG);
 
-            // provide handler to receive system events, such as locale update needed
-            gnManager.systemEventHandler( new SystemEvents() );
-
-            // get a user, if no user stored persistently a new user is registered and stored
-            // Note: Android persistent storage used, so no GNSDK storage provider needed to store a user
-            gnUser = new GnUser( new GnUserStore(context), gnsdkClientId, gnsdkClientTag, appString );
-
-            // enable storage provider allowing GNSDK to use its persistent stores
             GnStorageSqlite.enable();
+            
 
             // enable local MusicID-Stream recognition (GNSDK storage provider must be enabled as pre-requisite)
             //GnLookupLocalStream.enable();
 
-            // Loads data to support the requested locale, data is downloaded from Gracenote Service if not
-            // found in persistent storage. Once downloaded it is stored in persistent storage (if storage
-            // provider is enabled). Download and write to persistent storage can be lengthy so perform in
-            // another thread
             Thread localeThread = new Thread(
                     new LocaleLoadRunnable(GnLocaleGroup.kLocaleGroupMusic,
                             GnLanguage.kLanguageEnglish,
@@ -185,77 +181,33 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
             );
             localeThread.start();
 
-            // Ingest MusicID-Stream local bundle, perform in another thread as it can be lengthy
-            Thread ingestThread = new Thread( new LocalBundleIngestRunnable(context) );
+            Thread ingestThread = new Thread(new LocalBundleIngestRunnable(context));
             ingestThread.start();
 
-            // Set up for continuous listening from the microphone
-            // - create microphone, this can live for lifetime of app
-            // - create GnMusicIdStream instance, this can live for lifetime of app
-            // - configure
-            // Starting and stopping continuous listening should be started and stopped
-            // based on Activity life-cycle, see onPause and onResume for details
-            // To show audio visualization we wrap GnMic in a visualization adapter
-            gnMicrophone = new GnMic();
             gnMusicId = new GnMusicId(gnUser);
             gnMusicId.options().lookupData(GnLookupData.kLookupDataContent, true);
             gnMusicId.options().lookupData(GnLookupData.kLookupDataSonicData, true);
-            gnMusicId.options().resultSingle( true );
+            gnMusicId.options().lookupData(GnLookupData.kLookupDataInvalid, true);
+            gnMusicId.options().resultSingle(true);
 
+        } catch (GnException e) {
 
-        } catch ( GnException e ) {
-
-            Log.e(appString, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
-            showError( e.errorAPI() + ": " + e.errorDescription() );
+            Log.e(TAG, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
+            showError(e.errorAPI() + ": " + e.errorDescription());
             return;
 
-        } catch ( Exception e ) {
-            if(e.getMessage() != null){
-                Log.e(appString, e.getMessage());
-                showError( e.getMessage() );
-            }
-            else{
+        } catch (Exception e) {
+            if (e.getMessage() != null) {
+                Log.e(TAG, e.getMessage());
+                showError(e.getMessage());
+            } else {
                 e.printStackTrace();
             }
             return;
 
         }
-        // Set messageButton onClickListener to send message to wear
-        messageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Wearable.MessageApi.sendMessage(mGoogleApiClient, remoteNodeId, MESSAGE_PATH, null).setResultCallback(new ResultCallback<MessageApi.SendMessageResult>() {
-                    @Override
-                    public void onResult(MessageApi.SendMessageResult sendMessageResult) {
-                        if (sendMessageResult.getStatus().isSuccess())
-                            Toast.makeText(getApplication(), getString(R.string.message_sent), Toast.LENGTH_SHORT).show();
-                        else
-                            Toast.makeText(getApplication(), getString(R.string.error_message), Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                if (mGoogleApiClient.isConnected() && mLastLocation != null) {
-                    startIntentService();
-                }
-                mAddressRequested = true;
-
-                mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-                mLastUpdateTime = DateFormat.getDateTimeInstance().format(new Date());
-                if (mLastLocation != null) {
-                    Log.d( TAG, "getLatitude: " + mLastLocation.getLatitude());
-                    Log.d( TAG, "getLongitude: " + mLastLocation.getLongitude());
-                    Log.d( TAG, "DateTime: " + mLastUpdateTime);
-                }
-
-                Intent intent = new Intent(SendMessageToWear.this, PostActivity.class);
-                intent.putExtra(Application.INTENT_EXTRA_LOCATION, mLastLocation);
-                startActivity(intent);
-            }
-
-        });
 
 
-        // Create NodeListener that enables buttons when a node is connected and disables buttons when a node is disconnected
         nodeListener = new NodeApi.NodeListener() {
             @Override
             public void onPeerConnected(Node node) {
@@ -263,7 +215,6 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        messageButton.setEnabled(true);
                         Toast.makeText(getApplication(), getString(R.string.peer_connected), Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -274,7 +225,6 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        messageButton.setEnabled(false);
                         Toast.makeText(getApplication(), getString(R.string.peer_disconnected), Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -282,37 +232,30 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
         };
 
 
-        // Create MessageListener that receives messages sent from a wearable
         messageListener = new MessageApi.MessageListener() {
             @Override
             public void onMessageReceived(final MessageEvent messageEvent) {
-                Log.d( TAG, "onMessageReceived (before): " + messageEvent );
                 if (messageEvent.getPath().equals(MESSAGE_PATH)) {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            Log.d( TAG, "message received and try to append." );
+                            Log.d(TAG, "Message from wear received.");
 
-                            Long tsLong = System.currentTimeMillis()/1000;
-                            String ts = tsLong.toString();
                             String result = new String(messageEvent.getData());
+                           // result = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><GNFPX_FP_QUERY VERSION=\"1.0\"><ALGORITHM><NAME>Philips</NAME><VERSION>1.1</VERSION><BLOCK_LENGTH>3</BLOCK_LENGTH><FORMAT>COMPRESSED</FORMAT></ALGORITHM><FP_BLOCKS COUNT=\"2\"><FP_BLOCK TYPE=\"BINARY\" ENCODING=\"BASE64\" COUNT=\"167\" ORDINAL=\"1\" IDENT=\"1\">0DmL1ur3zap6e0e2BFTL7A9rSst88/GvfjTrvF4hOQ3mosF98iCM/9vm1znc6KsxFlyke2S72i9JEKCpMpOdXv+Gfvcnlw0x6Xbgv8+3tdoyOvX7hlr4H+lWaX9g3eK64//C35r7mUc1j6o7sK/6yvVERLiNy26D/wFuW4ndHb+q2lTdKUzIYEqln5T9M6WbVf3ffDtQVpd2uOEttoJ1Cb6q/ld574iu2Tdw8k3rX+d/u+vJ7gP+f1MCkMmJ1fZFChPqKl37Iw7bQ/6nxFa11/G/WOKrPuVDa/y7ZD/uz/O6MaCaX1Zd3y5wbdIV3e3P8utRXdVJECaJQs2IFpvqv+5Xsed5rvQJP6x9HbXtilr2RoWpvLWOp49E4hD7u//J/O363unKwKRK4Kp0zH6jpo37X133fshNafNR5a9rhNQPTvuWedPq7lfX+cXkRCX5sTnYa/25f/0vGtqbiAdm7trxap1IxTcD0y+8txPV//8qA8YFql8kYSbgJwyUUwHK4GFIqplVqHRKfKV5XpTBM2Tlg8E/WNC8PPkyLuR1LLzEysPCKxa1s8wpJEKdFbXqarg9q/y4XZVaLevyY5VQiWeA+CyKWXmFXalS5R1un4FJ4CVKjNUTb5dUfqqKa+KSSN4I5dUoMyFY5G2JEy8ilsRLJmk21eCUJ6oZmRwrVW6yxCux4838hFIpN7OMobIg5U2tV83mGS2xMSnN8PHxAg8r78KgyMpUyB+kvEoe9ZwSAlYls6tA5QYOKUpUtVKGQ7lRmSWi+SE2puQJRTm4VmsZQhnKZeVGeUSIXNHXG0mRcsuGyqxcVMcPc0lLgVUHOZeCOKL85aS1eim/abJywkjlxKd/UqIS3CCShxtFyjsZdnaJa4dirc7NU3L5AQI=</FP_BLOCK><FP_BLOCK TYPE=\"BINARY\" ENCODING=\"BASE64\" COUNT=\"170\" ORDINAL=\"2\" IDENT=\"2\">JtPpZbt1vW3+3I8qvz1F7BKIwU5f41bm142n2zb7Tea1v2zMQO/Vsy5SoA31/qyb1/jCf9DYtdk6k03MgMqla/pJZ/5qNnu4k0uZP9vTvxcQLt3HovWWC0HVzri/uCbWb076S+LJE7ZgcyvaHvD5L887OxPb5n9Hdv2eRcVCSFSKraooMv+g/2WPTi5djra7mGdGxDS//e/tsOnyim4setowgFf9BSrzkCo1DhuJ9czfH7hVD1vzO22RqDaofTvs2FapnR/cQzNeEg6OOPXzOObBbHTzat63XUf1hP7xhyu1IdN0DGH97DX4j08fPGCym1k6rurvjEjta4WTZzGkt2aNLQH9kZ+wvqPFI+3mXKv3rM6Rtt44o6JHaHjcH9/uBByeWpcdtLgw7vb0Y+l6Tub/79q17IPPDxjQDoWcr9ScapzLfA87Yw7wDi5DTcrf2qy+rv34jeo/mBjeqsqOq8mqQS4mpGm8M+V29v1gXmrXYu8qhMl9XTR9E0dUsNjXLoYcNuFL2vy/HQWIdpdfhoZdhtihhBNAuZdzMfdqJD95CfKal/Nyx9ASMZTMRSifot9TdVqKEqBCnvJTN3oekq9CKRLt+cVCjEqwiDWpkHOyojgrgSYA7nIGWfmq4CKSPLnkzhKrzMpKIO/LBMpXHijEajNkxhl+vgIZEOUwhi0yAAkpW412ElKaOuLmbysPQrkqNCsRl1pQoiSAlvcLrLzEncTFcibUrMjSAkvD5xngnK18Jn7YE58RAmveskp2crLeUd2xaxVOuZo/GXSGX0YyZGA6zkohkn/veJGslYasl2hXdVWFlbLaMhxlulbNYOSyxCO2zmrksjZTrqtSx4tVprNrRslrpclBPtDyinxIIjHNyNCoQ3RK4iaGzRkUSL06uViqk0R+</FP_BLOCK></FP_BLOCKS></GNFPX_FP_QUERY>";
                             identifyFingerprint(result);
-
-                            receivedMessagesEditText.append("\n" + getString(R.string.received_message) + " " + ts +"\n"+ result +"\n" );
                         }
                     });
                 }
-                Log.d( TAG, "onMessageReceived (after): " + messageEvent );
             }
 
         };
 
 
-        // Create GoogleApiClient
         mGoogleApiClient = new GoogleApiClient.Builder(getApplicationContext()).addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
             @Override
             public void onConnected(Bundle bundle) {
-                Log.d( TAG, "onConnected: Wearable.MessageApi.addListener and NodeApi.addListener registered." );
+                Log.d(TAG, "onConnected: Wearable.MessageApi.addListener and NodeApi.addListener registered.");
                 Wearable.NodeApi.addListener(mGoogleApiClient, nodeListener);
                 Wearable.MessageApi.addListener(mGoogleApiClient, messageListener);
                 // If there is a connected node, get it's id that is used when sending messages
@@ -322,7 +265,6 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
                         if (getConnectedNodesResult.getStatus().isSuccess() && getConnectedNodesResult.getNodes().size() > 0) {
                             remoteNodeId = getConnectedNodesResult.getNodes().get(0).getId();
                             Log.d(TAG, "remoteNodeId from mobile: " + remoteNodeId);
-                            messageButton.setEnabled(true);
                         }
                     }
                 });
@@ -347,19 +289,19 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
 
             @Override
             public void onConnectionSuspended(int i) {
-                messageButton.setEnabled(false);
+                // tbd
             }
         })
-        .addOnConnectionFailedListener(new GoogleApiClient.OnConnectionFailedListener() {
-            @Override
-            public void onConnectionFailed(ConnectionResult connectionResult) {
-                if (connectionResult.getErrorCode() == ConnectionResult.API_UNAVAILABLE)
-                    Toast.makeText(getApplicationContext(), getString(R.string.wearable_api_unavailable), Toast.LENGTH_LONG).show();
-            }
-        })
-        .addApi(Wearable.API)
-        .addApi(LocationServices.API)
-        .build();
+                .addOnConnectionFailedListener(new GoogleApiClient.OnConnectionFailedListener() {
+                    @Override
+                    public void onConnectionFailed(ConnectionResult connectionResult) {
+                        if (connectionResult.getErrorCode() == ConnectionResult.API_UNAVAILABLE)
+                            Toast.makeText(getApplicationContext(), getString(R.string.wearable_api_unavailable), Toast.LENGTH_LONG).show();
+                    }
+                })
+                .addApi(Wearable.API)
+                .addApi(LocationServices.API)
+                .build();
 
         mResultReceiver = new AddressResultReceiver(new Handler());
 
@@ -379,39 +321,89 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
         // Get the geofences used. Geofence data is hard coded in this sample.
         populateGeofenceList();
 
-        /**
-         * Add and connect to Parse SDK (for MUbi project)
-         */
-        // Enable Local Datastore.
-
-
-
-//        Parse.enableLocalDatastore(this);
-//        Parse.initialize(this);
-
-//        Parse.initialize(this, "Re5mvsBkM5q9Sgb2msGY3agJZcjMrbbnuUTmIyKU", "zif1v5X2r3yWFbZLxevUS7LbM2iOVvBWX2fQKWAT");
-        ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "bar");
-        testObject.saveInBackground();
-
     }
 
-    private void identifyFingerprint(String fingerprintData){
+    String newTrack;
+
+    private void identifyFingerprint(String fingerprintData) {
         try {
-           GnResponseAlbums list = gnMusicId.findAlbums(fingerprintData, GnFingerprintType.kFingerprintTypeStream6);
-           Log.v(TAG, "found " + list.resultCount() + " matches");
-            if(list.resultCount() > 0){
+            GnResponseAlbums list = gnMusicId.findAlbums(fingerprintData, GnFingerprintType.kFingerprintTypeStream6);
+
+            Log.v(TAG, "found " + list.resultCount() + " matches");
+
+            if (list.resultCount() > 0) {
                 GnAlbumIterator iterator = list.albums().getIterator();
                 int i = 1;
-                while(iterator.hasNext()){
+                while (iterator.hasNext()) {
                     GnAlbum album = iterator.next();
-                    Log.v(TAG, "album "+i+": " + album.title().display() + ", by: " + album.artist().name().display());
-                    i++;
+                    Log.d("ALBUM","1 "+album.coverArt().mimeType());
+                    Log.d("ALBUM","2 "+album.coverArt().Id());
+                    Log.d("ALBUM","3 "+album.coverArt().asset(GnImageSize.kImageSizeThumbnail).toString());
+
+                    String coverArtUrl = album.coverArt().asset(GnImageSize.kImageSizeMedium).url();
+
+
+                    albumTitle = album.title().display();
+
+                    artist = album.trackMatched().artist().name().display();
+
+                    if (artist.isEmpty()) {
+                        artist = album.artist().name().display();
+                    }
+
+                    if (album.trackMatched() != null) {
+                        track = album.trackMatched().title().display();
+                    }
+
+                    if( !track.equals(newTrack) ) {
+
+                        Log.v(TAG, "song: " + track + ", by: " + artist + " on album " + i + ": " + albumTitle + " cover Url : " + coverArtUrl);
+
+                        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+                        mLastUpdateTime = DateFormat.getDateTimeInstance().format(new Date());
+
+                        if (mLastLocation != null) {
+                            geoPoint = new ParseGeoPoint(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+                            post();
+                        }
+
+                        newTrack = track;
+
+                        i++;
+
+                    }
+
                 }
+
             }
+
         } catch (GnException e) {
             e.printStackTrace();
         }
+    }
+
+    private void post() {
+
+        MubiqPost post = new MubiqPost();
+
+        post.setLocation(geoPoint);
+        post.setAlbum(albumTitle);
+        post.setArtist(artist);
+        post.setTrack(track);
+        post.setUser(ParseUser.getCurrentUser());
+        ParseACL acl = new ParseACL();
+
+        // Give public read access
+        acl.setPublicReadAccess(true);
+        post.setACL(acl);
+
+        // Save the post
+        post.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                // tbd
+            }
+        });
     }
 
 
@@ -453,12 +445,193 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
 
     @Override
     protected void onPause() {
-        // Unregister Node and Message listeners, disconnect GoogleApiClient and disable buttons
+        // Unregister Node and Message listeners, disconnect GoogleApiClient
         Wearable.NodeApi.removeListener(mGoogleApiClient, nodeListener);
         Wearable.MessageApi.removeListener(mGoogleApiClient, messageListener);
         mGoogleApiClient.disconnect();
-        messageButton.setEnabled(false);
         super.onPause();
+    }
+
+    /**
+     * Loads a locale
+     */
+    class LocaleLoadRunnable implements Runnable {
+        GnLocaleGroup group;
+        GnLanguage language;
+        GnRegion region;
+        GnDescriptor descriptor;
+        GnUser user;
+
+
+        LocaleLoadRunnable(
+                GnLocaleGroup group,
+                GnLanguage language,
+                GnRegion region,
+                GnDescriptor descriptor,
+                GnUser user) {
+            this.group = group;
+            this.language = language;
+            this.region = region;
+            this.descriptor = descriptor;
+            this.user = user;
+        }
+
+        @Override
+        public void run() {
+            try {
+
+                GnLocale locale = new GnLocale(group, language, region, descriptor, gnUser);
+                locale.setGroupDefault();
+
+            } catch (GnException e) {
+                Log.e(TAG, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
+            }
+        }
+    }
+
+
+    /**
+     * Loads a local bundle for MusicID-Stream lookups
+     */
+    class LocalBundleIngestRunnable implements Runnable {
+        Context context;
+
+        LocalBundleIngestRunnable(Context context) {
+            this.context = context;
+        }
+
+        public void run() {
+            try {
+
+                InputStream bundleInputStream = null;
+                int ingestBufferSize = 1024;
+                byte[] ingestBuffer = new byte[ingestBufferSize];
+                int bytesRead = 0;
+
+                GnLookupLocalStreamIngest ingester = new GnLookupLocalStreamIngest(new BundleIngestEvents());
+
+                try {
+
+                    bundleInputStream = context.getAssets().open("1557.b");
+
+                    do {
+
+                        bytesRead = bundleInputStream.read(ingestBuffer, 0, ingestBufferSize);
+                        if (bytesRead == -1)
+                            bytesRead = 0;
+
+                        ingester.write(ingestBuffer, bytesRead);
+
+                    } while (bytesRead != 0);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                ingester.flush();
+
+            } catch (GnException e) {
+                Log.e(TAG, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
+            }
+
+        }
+    }
+
+
+    /**
+     * Receives system events from GNSDK
+     */
+    class SystemEvents implements IGnSystemEvents {
+        @Override
+        public void localeUpdateNeeded(GnLocale locale) {
+
+            // Locale update is detected
+            try {
+                locale.update(gnUser);
+            } catch (GnException e) {
+                Log.e(TAG, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
+            }
+        }
+
+        @Override
+        public void listUpdateNeeded(GnList list) {
+            // List update is detected
+            try {
+                list.update(gnUser);
+            } catch (GnException e) {
+                Log.e(TAG, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
+            }
+        }
+
+        @Override
+        public void systemMemoryWarning(long currentMemorySize, long warningMemorySize) {
+            // only invoked if a memory warning limit is configured
+        }
+    }
+
+    /**
+     * GNSDK status event delegate
+     */
+    private class StatusEvents implements IGnStatusEvents {
+
+        @Override
+        public void statusEvent(GnStatus status, long percentComplete, long bytesTotalSent, long bytesTotalReceived, IGnCancellable cancellable) {
+            Log.v(TAG, "IGnStatusEvents statusEvent (status): " + status);
+        }
+
+    }
+
+    ;
+
+    /**
+     * GNSDK bundle ingest status event delegate
+     */
+    private class BundleIngestEvents implements IGnLookupLocalStreamIngestEvents {
+
+        @Override
+        public void statusEvent(GnLookupLocalStreamIngestStatus status, String bundleId, IGnCancellable canceller) {
+            Log.v(TAG, "IGnLookupLocalStreamIngestEvents statusEvent (status): " + status);
+        }
+    }
+
+
+    /**
+     * Helpers to read license file from assets as string
+     */
+    private String getAssetAsString(String assetName) {
+
+        String assetString = null;
+        InputStream assetStream;
+
+        try {
+
+            assetStream = this.getApplicationContext().getAssets().open(assetName);
+            if (assetStream != null) {
+
+                java.util.Scanner s = new java.util.Scanner(assetStream).useDelimiter("\\A");
+
+                assetString = s.hasNext() ? s.next() : "";
+                assetStream.close();
+
+            } else {
+                Log.e(TAG, "Asset not found:" + assetName);
+            }
+
+        } catch (IOException e) {
+
+            Log.e(TAG, "Error getting asset as string: " + e.getMessage());
+
+        }
+
+        return assetString;
+    }
+
+
+    /**
+     * Helper to show and error
+     */
+    private void showError(String errorMessage) {
+        Log.v(TAG, "showError (errorMessage): " + errorMessage);
     }
 
 
@@ -485,7 +658,6 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
                 Log.d(TAG, "" + getString(R.string.address_found));
             }
 
-            // Reset. Enable the Fetch Address button and stop showing the progress bar.
             mAddressRequested = false;
 
         }
@@ -510,11 +682,9 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
         }
     }
 
-
     protected void displayAddressOutput() {
         Log.d(TAG, "Nearest address: " + mAddressOutput);
     }
-
 
 
     /**
@@ -594,7 +764,7 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
     /**
      * Runs when the result of calling addGeofences() and removeGeofences() becomes available.
      * Either method can complete successfully or with an error.
-     *
+     * <p/>
      * Since this activity implements the {@link ResultCallback} interface, we are required to
      * define this method.
      *
@@ -684,7 +854,7 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
      * if the user hasn't yet added geofences. The Remove Geofences button is enabled if the
      * user has added geofences.
      */
-    // TODO: Dynamicallz add geofence and remove through time expiration
+    // TODO: Dynamically add geofence and remove through time expiration
     private void setButtonsEnabledState() {
         if (mGeofencesAdded) {
 //            mAddGeofencesButton.setEnabled(false);
@@ -693,198 +863,5 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
 //            mAddGeofencesButton.setEnabled(true);
 //            mRemoveGeofencesButton.setEnabled(false);
         }
-    }
-
-
-
-
-
-
-
-
-    /**
-     * Loads a locale
-     */
-    class LocaleLoadRunnable implements Runnable {
-        GnLocaleGroup	group;
-        GnLanguage		language;
-        GnRegion		region;
-        GnDescriptor	descriptor;
-        GnUser			user;
-
-
-        LocaleLoadRunnable(
-                GnLocaleGroup group,
-                GnLanguage		language,
-                GnRegion		region,
-                GnDescriptor	descriptor,
-                GnUser			user) {
-            this.group 		= group;
-            this.language 	= language;
-            this.region 	= region;
-            this.descriptor = descriptor;
-            this.user 		= user;
-        }
-
-        @Override
-        public void run() {
-            try {
-
-                GnLocale locale = new GnLocale(group,language,region,descriptor,gnUser);
-                locale.setGroupDefault();
-
-            } catch (GnException e) {
-                Log.e(appString, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
-            }
-        }
-    }
-
-
-    /**
-     * Loads a local bundle for MusicID-Stream lookups
-     */
-    class LocalBundleIngestRunnable implements Runnable {
-        Context context;
-
-        LocalBundleIngestRunnable(Context context) {
-            this.context = context;
-        }
-
-        public void run() {
-            try {
-
-                // our bundle is delivered as a package asset
-                // to ingest the bundle access it as a stream and write the bytes to
-                // the bundle ingester
-                // bundles should not be delivered with the package as this, rather they
-                // should be downloaded from your own online service
-
-                InputStream bundleInputStream 	= null;
-                int				ingestBufferSize	= 1024;
-                byte[] 			ingestBuffer 		= new byte[ingestBufferSize];
-                int				bytesRead			= 0;
-
-                GnLookupLocalStreamIngest ingester = new GnLookupLocalStreamIngest(new BundleIngestEvents());
-
-                try {
-
-                    bundleInputStream = context.getAssets().open("1557.b");
-
-                    do {
-
-                        bytesRead = bundleInputStream.read(ingestBuffer, 0, ingestBufferSize);
-                        if ( bytesRead == -1 )
-                            bytesRead = 0;
-
-                        ingester.write( ingestBuffer, bytesRead );
-
-                    } while( bytesRead != 0 );
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                ingester.flush();
-
-            } catch (GnException e) {
-                Log.e(appString, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
-            }
-
-        }
-    }
-
-
-    /**
-     * Receives system events from GNSDK
-     */
-    class SystemEvents implements IGnSystemEvents {
-        @Override
-        public void localeUpdateNeeded( GnLocale locale ){
-
-            // Locale update is detected
-            try {
-                locale.update( gnUser );
-            } catch (GnException e) {
-                Log.e(appString, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
-            }
-        }
-
-        @Override
-        public void listUpdateNeeded( GnList list ) {
-            // List update is detected
-            try {
-                list.update( gnUser );
-            } catch (GnException e) {
-                Log.e(appString, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule());
-            }
-        }
-
-        @Override
-        public void systemMemoryWarning(long currentMemorySize, long warningMemorySize) {
-            // only invoked if a memory warning limit is configured
-        }
-    }
-
-    /**
-     * GNSDK status event delegate
-     */
-    private class StatusEvents implements IGnStatusEvents {
-
-        @Override
-        public void statusEvent( GnStatus status, long percentComplete, long bytesTotalSent, long bytesTotalReceived, IGnCancellable cancellable ) {
-
-        }
-
-    };
-
-    /**
-     * GNSDK bundle ingest status event delegate
-     */
-    private class BundleIngestEvents implements IGnLookupLocalStreamIngestEvents {
-
-        @Override
-        public void statusEvent(GnLookupLocalStreamIngestStatus status, String bundleId, IGnCancellable canceller) {
-
-        }
-    }
-
-
-    /**
-     * Helpers to read license file from assets as string
-     */
-    private String getAssetAsString( String assetName ){
-
-        String assetString = null;
-        InputStream assetStream;
-
-        try {
-
-            assetStream = this.getApplicationContext().getAssets().open(assetName);
-            if(assetStream != null){
-
-                java.util.Scanner s = new java.util.Scanner(assetStream).useDelimiter("\\A");
-
-                assetString = s.hasNext() ? s.next() : "";
-                assetStream.close();
-
-            }else{
-                Log.e(appString, "Asset not found:" + assetName);
-            }
-
-        } catch (IOException e) {
-
-            Log.e(appString, "Error getting asset as string: " + e.getMessage());
-
-        }
-
-        return assetString;
-    }
-
-
-    /**
-     * Helper to show and error
-     */
-    private void showError( String errorMessage ) {
-
     }
 }

@@ -118,22 +118,7 @@ class DetailView {
 		 if(origin != null){
 			 ((TextView) detailView.findViewById(R.id.origin)).setText("Origin: " + origin);
 		 }
-		 			 
-        //Time to Match
-		 if(gracenoteMusicID.lastLookup_matchTime > 0){
-			  DecimalFormat df = new DecimalFormat("#,###,##0.00");
-			 ((TextView) detailView.findViewById(R.id.queryTime)).setText("Time to match: " + df.format(((double)gracenoteMusicID.lastLookup_matchTime)/1000) + " s");
-		 }
-		 
-        //Lookup source
-		 if(gracenoteMusicID.lastLookup_local){
-			 ((TextView) detailView.findViewById(R.id.lookupSource)).setText("Lookup source: local");
-		 }
-		 else{
-				 ((TextView) detailView.findViewById(R.id.lookupSource)).setText("Lookup source: online");
-		 }
-		 
-        
+
 			
 		buttonAlbumReview = (Button) detailView.findViewById(R.id.albumReview);
 		 	

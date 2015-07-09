@@ -11,14 +11,21 @@ import com.parse.ParseUser;
  */
 @ParseClassName("Posts")
 public class MubiqPost extends ParseObject {
-  public String getText() {
-    return getString("text");
-  }
 
-  // becomes song information split into artist, song title, album, (coverart), etc
-  public void setText(String value) {
-    put("text", value);
-  }
+  public String getAlbum() { return getString("albumTitle"); }
+
+  public void setAlbum(String value) { put("albumTitle", value); }
+
+
+  public String getArtist() { return getString("artist"); }
+
+  public void setArtist(String value) { put("artist", value); }
+
+
+  public String getTrack() { return getString("track"); }
+
+  public void setTrack(String value) { put("track", value); }
+
 
   public ParseUser getUser() {
     return getParseUser("user");
@@ -28,6 +35,7 @@ public class MubiqPost extends ParseObject {
     put("user", value);
   }
 
+
   public ParseGeoPoint getLocation() {
     return getParseGeoPoint("location");
   }
@@ -35,6 +43,7 @@ public class MubiqPost extends ParseObject {
   public void setLocation(ParseGeoPoint value) {
     put("location", value);
   }
+
 
   public static ParseQuery<MubiqPost> getQuery() {
     return ParseQuery.getQuery(MubiqPost.class);
