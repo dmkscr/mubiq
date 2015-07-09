@@ -101,6 +101,8 @@ import com.gracenote.gnsdk.IGnMusicIdStreamEvents;
 import com.gracenote.gnsdk.IGnStatusEvents;
 import com.gracenote.gnsdk.IGnSystemEvents;
 
+import org.w3c.dom.Text;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -144,6 +146,17 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
     private Handler                         handler, handlerTimer;
 
 	ImageView coverImg;
+
+	TextView albumTitle;
+	TextView artist;
+	TextView track;
+	TextView nearestAddress;
+
+	String albumTitleText = "";
+	String artistText = "";
+	String trackText = "";
+	String nearestAddressText = "";
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -155,6 +168,11 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
 
 		setContentView(R.layout.main);
 		coverImg = (ImageView) findViewById(R.id.coverImg);
+
+		albumTitle = (TextView) findViewById(R.id.albumTitle);
+		artist = (TextView) findViewById(R.id.artist);
+		track = (TextView) findViewById(R.id.track);
+		nearestAddress = (TextView) findViewById(R.id.nearestAddress);
 
 		// check the client id and tag have been set
 		if ( (gnsdkClientId == null) || (gnsdkClientTag == null) ){
@@ -373,22 +391,36 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
 					dataMap = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
 					Log.v(TAG, "DataMap received on watch: " + dataMap);
 
-					String albumTitle = dataMap.getString("albumTitle");
-
-					DataMapItem dataMapItem = DataMapItem.fromDataItem(event.getDataItem());
-					Asset profileAsset = dataMapItem.getDataMap().getAsset("coverImg");
-					final Bitmap bitmap = loadBitmapFromAsset(profileAsset);
-					Log.d("asd", bitmap.getByteCount() + "");
-
+					albumTitleText = dataMap.getString("albumTitle");
+					artistText = dataMap.getString("artist");
+					trackText = dataMap.getString("track");
+					nearestAddressText = dataMap.getString("nearestAddress");
 
 					runOnUiThread(new Runnable() {
 						@Override
 						public void run() {
-							coverImg.setImageBitmap(bitmap);
+							albumTitle.setText(albumTitleText);
+							artist.setText(artistText);
+							track.setText(trackText);
+							nearestAddress.setText(nearestAddressText);
 						}
 					});
 
-					dataMap.clear();
+//					DataMapItem dataMapItem = DataMapItem.fromDataItem(event.getDataItem());
+//					Asset profileAsset = dataMapItem.getDataMap().getAsset("coverImg");
+//					final Bitmap bitmap = loadBitmapFromAsset(profileAsset);
+//
+//					Log.d("bitmap.getByteCount", bitmap.getByteCount() + "");
+//
+//
+//					runOnUiThread(new Runnable() {
+//						@Override
+//						public void run() {
+//							coverImg.setImageBitmap(bitmap);
+//						}
+//					});
+
+//					dataMap.clear();
 				}
 			}
 		}

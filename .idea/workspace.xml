@@ -8,6 +8,9 @@
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/GracenoteMusicID.java" line="396" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="a997de38-ad3c-46d0-9b56-f3f25a5a0689" name="Default" comment="" />
     <ignored path="mubiq.iws" />
@@ -48,8 +51,8 @@
       <file leaf-file-name="SendMessageToWear.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/SendMessageToWear.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.0">
-              <caret line="362" column="0" selection-start-line="362" selection-start-column="0" selection-end-line="362" selection-end-column="0" />
+            <state vertical-scroll-proportion="-2.2372882">
+              <caret line="462" column="0" selection-start-line="462" selection-start-column="0" selection-end-line="462" selection-end-column="0" />
               <folding>
                 <element signature="class#12340:14354" expanded="false" />
                 <element signature="e#20490#20628#0" expanded="true" />
@@ -107,17 +110,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GracenoteMusicID.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GracenoteMusicID.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/GracenoteMusicID.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.58147514">
-              <caret line="381" column="0" selection-start-line="381" selection-start-column="0" selection-end-line="381" selection-end-column="0" />
+            <state vertical-scroll-proportion="-8.067797">
+              <caret line="157" column="34" selection-start-line="157" selection-start-column="34" selection-end-line="157" selection-end-column="34" />
               <folding>
-                <element signature="e#9026#9515#0" expanded="true" />
-                <element signature="e#9514#9515#0" expanded="true" />
-                <element signature="e#13790#13903#0" expanded="true" />
-                <element signature="e#13902#13903#0" expanded="true" />
-                <element signature="method#loadBitmapFromAsset#0;class#GracenoteMusicID#0" expanded="false" />
+                <element signature="e#9468#9957#0" expanded="true" />
+                <element signature="e#9956#9957#0" expanded="true" />
+                <element signature="e#14122#14357#0" expanded="true" />
+                <element signature="e#14356#14357#0" expanded="true" />
                 <element signature="class#MusicIDEvents#0;class#GracenoteMusicID#0" expanded="false" />
                 <element signature="class#LocaleLoadRunnable#0;class#GracenoteMusicID#0" expanded="false" />
                 <element signature="class#LocalBundleIngestRunnable#0;class#GracenoteMusicID#0" expanded="false" />
@@ -131,14 +133,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/main.xml">
           <provider editor-type-id="android-designer">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.9407666">
+              <caret line="34" column="40" selection-start-line="34" selection-start-column="40" selection-end-line="34" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -150,8 +152,8 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="17" selection-start-line="17" selection-start-column="4" selection-end-line="19" selection-end-column="43" />
+            <state vertical-scroll-proportion="-10.5">
+              <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -2403,10 +2405,10 @@
         <option value="$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/ListenerService.java" />
         <option value="$PROJECT_DIR$/mobile/src/main/res/layout/main.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/res/layout/rect_activity_main.xml" />
-        <option value="$PROJECT_DIR$/wear/src/main/res/layout/main.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/SendMessageToWear.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/GracenoteMusicID.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/res/layout/main.xml" />
       </list>
     </option>
   </component>
@@ -2804,7 +2806,7 @@
       <recent name="C:\Users\zigzag\Documents\mubiq\wear\src\main\res\layout" />
     </key>
   </component>
-  <component name="RunManager" selected="Android Application.mobile">
+  <component name="RunManager" selected="Android Application.wear">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -3031,7 +3033,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-379" y="-1449" width="2578" height="1458" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32786885" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -3040,11 +3042,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32786885" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32943013" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.49960968" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.49960968" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18605578" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -3058,7 +3061,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32943013" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -3083,7 +3085,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/GracenoteMusicID.java</url>
-          <line>375</line>
+          <line>393</line>
           <properties />
           <option name="timeStamp" value="19" />
         </line-breakpoint>
@@ -3156,11 +3158,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="414" column="0" selection-start-line="414" selection-start-column="0" selection-end-line="414" selection-end-column="0" />
           <folding>
-            <element signature="e#9026#9515#0" expanded="true" />
-            <element signature="e#9514#9515#0" expanded="true" />
-            <element signature="e#13790#13903#0" expanded="true" />
-            <element signature="e#13902#13903#0" expanded="true" />
-            <element signature="method#loadBitmapFromAsset#0;class#GracenoteMusicID#0" expanded="false" />
+            <element signature="e#9468#9957#0" expanded="true" />
+            <element signature="e#9956#9957#0" expanded="true" />
+            <element signature="e#14122#14357#0" expanded="true" />
+            <element signature="e#14356#14357#0" expanded="true" />
             <element signature="class#MusicIDEvents#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#LocaleLoadRunnable#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#LocalBundleIngestRunnable#0;class#GracenoteMusicID#0" expanded="false" />
@@ -3284,11 +3285,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="414" column="0" selection-start-line="414" selection-start-column="0" selection-end-line="414" selection-end-column="0" />
           <folding>
-            <element signature="e#9026#9515#0" expanded="true" />
-            <element signature="e#9514#9515#0" expanded="true" />
-            <element signature="e#13790#13903#0" expanded="true" />
-            <element signature="e#13902#13903#0" expanded="true" />
-            <element signature="method#loadBitmapFromAsset#0;class#GracenoteMusicID#0" expanded="false" />
+            <element signature="e#9468#9957#0" expanded="true" />
+            <element signature="e#9956#9957#0" expanded="true" />
+            <element signature="e#14122#14357#0" expanded="true" />
+            <element signature="e#14356#14357#0" expanded="true" />
             <element signature="class#MusicIDEvents#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#LocaleLoadRunnable#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#LocalBundleIngestRunnable#0;class#GracenoteMusicID#0" expanded="false" />
@@ -3412,11 +3412,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="414" column="0" selection-start-line="414" selection-start-column="0" selection-end-line="414" selection-end-column="0" />
           <folding>
-            <element signature="e#9026#9515#0" expanded="true" />
-            <element signature="e#9514#9515#0" expanded="true" />
-            <element signature="e#13790#13903#0" expanded="true" />
-            <element signature="e#13902#13903#0" expanded="true" />
-            <element signature="method#loadBitmapFromAsset#0;class#GracenoteMusicID#0" expanded="false" />
+            <element signature="e#9468#9957#0" expanded="true" />
+            <element signature="e#9956#9957#0" expanded="true" />
+            <element signature="e#14122#14357#0" expanded="true" />
+            <element signature="e#14356#14357#0" expanded="true" />
             <element signature="class#MusicIDEvents#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#LocaleLoadRunnable#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#LocalBundleIngestRunnable#0;class#GracenoteMusicID#0" expanded="false" />
@@ -3630,28 +3629,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/rect_activity_main.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="17" selection-start-line="17" selection-start-column="4" selection-end-line="19" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/main.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/mobile/libs/gnsdk.jar!/com/gracenote/gnsdk/GnImageSize.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34358975">
@@ -3703,8 +3680,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/SendMessageToWear.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.0">
-          <caret line="362" column="0" selection-start-line="362" selection-start-column="0" selection-end-line="362" selection-end-column="0" />
+        <state vertical-scroll-proportion="-2.2372882">
+          <caret line="462" column="0" selection-start-line="462" selection-start-column="0" selection-end-line="462" selection-end-column="0" />
           <folding>
             <element signature="class#12340:14354" expanded="false" />
             <element signature="e#20490#20628#0" expanded="true" />
@@ -3729,14 +3706,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/GracenoteMusicID.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58147514">
-          <caret line="381" column="0" selection-start-line="381" selection-start-column="0" selection-end-line="381" selection-end-column="0" />
+        <state vertical-scroll-proportion="-8.067797">
+          <caret line="157" column="34" selection-start-line="157" selection-start-column="34" selection-end-line="157" selection-end-column="34" />
           <folding>
-            <element signature="e#9026#9515#0" expanded="true" />
-            <element signature="e#9514#9515#0" expanded="true" />
-            <element signature="e#13790#13903#0" expanded="true" />
-            <element signature="e#13902#13903#0" expanded="true" />
-            <element signature="method#loadBitmapFromAsset#0;class#GracenoteMusicID#0" expanded="false" />
+            <element signature="e#9468#9957#0" expanded="true" />
+            <element signature="e#9956#9957#0" expanded="true" />
+            <element signature="e#14122#14357#0" expanded="true" />
+            <element signature="e#14356#14357#0" expanded="true" />
             <element signature="class#MusicIDEvents#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#LocaleLoadRunnable#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#LocalBundleIngestRunnable#0;class#GracenoteMusicID#0" expanded="false" />
@@ -3746,6 +3722,28 @@
             <element signature="method#getAssetAsString#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="method#showError#0;class#GracenoteMusicID#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/rect_activity_main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.5">
+          <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9407666">
+          <caret line="34" column="40" selection-start-line="34" selection-start-column="40" selection-end-line="34" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
