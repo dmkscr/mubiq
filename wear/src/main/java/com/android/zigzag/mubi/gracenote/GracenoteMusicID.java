@@ -375,17 +375,20 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
 
 					String albumTitle = dataMap.getString("albumTitle");
 
-//					DataMapItem dataMapItem = DataMapItem.fromDataItem(event.getDataItem());
-//					Asset profileAsset = dataMapItem.getDataMap().getAsset("coverImg");
-//					final Bitmap bitmap = loadBitmapFromAsset(profileAsset);
-//					Log.d("asd", bitmap.getByteCount() + "");
-//
-//					runOnUiThread(new Runnable() {
-//						@Override
-//						public void run() {
-//							coverImg.setImageBitmap(bitmap);
-//						}
-//					});
+					DataMapItem dataMapItem = DataMapItem.fromDataItem(event.getDataItem());
+					Asset profileAsset = dataMapItem.getDataMap().getAsset("coverImg");
+					final Bitmap bitmap = loadBitmapFromAsset(profileAsset);
+					Log.d("asd", bitmap.getByteCount() + "");
+
+
+					runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							coverImg.setImageBitmap(bitmap);
+						}
+					});
+
+					dataMap.clear();
 				}
 			}
 		}

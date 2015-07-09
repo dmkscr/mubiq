@@ -45,15 +45,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SendMessageToWear.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SendMessageToWear.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/SendMessageToWear.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.31903946">
-              <caret line="414" column="19" selection-start-line="414" selection-start-column="19" selection-end-line="414" selection-end-column="19" />
+            <state vertical-scroll-proportion="-2.0">
+              <caret line="362" column="0" selection-start-line="362" selection-start-column="0" selection-end-line="362" selection-end-column="0" />
               <folding>
                 <element signature="class#12340:14354" expanded="false" />
-                <element signature="e#20486#20624#0" expanded="true" />
-                <element signature="e#20623#20624#0" expanded="true" />
+                <element signature="e#20490#20628#0" expanded="true" />
+                <element signature="e#20627#20628#0" expanded="true" />
                 <element signature="class#LocaleLoadRunnable#0;class#SendMessageToWear#0" expanded="false" />
                 <element signature="class#SystemEvents#0;class#SendMessageToWear#0" expanded="false" />
                 <element signature="class#StatusEvents#0;class#SendMessageToWear#0" expanded="false" />
@@ -70,7 +70,19 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1039#1040#0" expanded="false" />
+                <element signature="e#1084#1085#0" expanded="false" />
+                <element signature="e#1134#1135#0" expanded="false" />
+                <element signature="e#1166#1167#0" expanded="false" />
+                <element signature="e#1206#1207#0" expanded="false" />
+                <element signature="e#1250#1251#0" expanded="false" />
+                <element signature="e#1299#1300#0" expanded="false" />
+                <element signature="e#1337#1338#0" expanded="false" />
+                <element signature="e#1390#1391#0" expanded="false" />
+                <element signature="e#1443#1444#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -95,14 +107,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GracenoteMusicID.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GracenoteMusicID.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/GracenoteMusicID.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.16">
-              <caret line="376" column="0" selection-start-line="376" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.58147514">
+              <caret line="381" column="0" selection-start-line="381" selection-start-column="0" selection-end-line="381" selection-end-column="0" />
               <folding>
                 <element signature="e#9026#9515#0" expanded="true" />
                 <element signature="e#9514#9515#0" expanded="true" />
+                <element signature="e#13790#13903#0" expanded="true" />
+                <element signature="e#13902#13903#0" expanded="true" />
                 <element signature="method#loadBitmapFromAsset#0;class#GracenoteMusicID#0" expanded="false" />
                 <element signature="class#MusicIDEvents#0;class#GracenoteMusicID#0" expanded="false" />
                 <element signature="class#LocaleLoadRunnable#0;class#GracenoteMusicID#0" expanded="false" />
@@ -2391,8 +2405,8 @@
         <option value="$PROJECT_DIR$/wear/src/main/res/layout/rect_activity_main.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/res/layout/main.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/GracenoteMusicID.java" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/SendMessageToWear.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/GracenoteMusicID.java" />
       </list>
     </option>
   </component>
@@ -3144,6 +3158,8 @@
           <folding>
             <element signature="e#9026#9515#0" expanded="true" />
             <element signature="e#9514#9515#0" expanded="true" />
+            <element signature="e#13790#13903#0" expanded="true" />
+            <element signature="e#13902#13903#0" expanded="true" />
             <element signature="method#loadBitmapFromAsset#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#MusicIDEvents#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#LocaleLoadRunnable#0;class#GracenoteMusicID#0" expanded="false" />
@@ -3181,8 +3197,8 @@
           <caret line="368" column="0" selection-start-line="368" selection-start-column="0" selection-end-line="368" selection-end-column="0" />
           <folding>
             <element signature="class#12340:14354" expanded="false" />
-            <element signature="e#20486#20624#0" expanded="true" />
-            <element signature="e#20623#20624#0" expanded="true" />
+            <element signature="e#20490#20628#0" expanded="true" />
+            <element signature="e#20627#20628#0" expanded="true" />
             <element signature="class#LocaleLoadRunnable#0;class#SendMessageToWear#0" expanded="false" />
             <element signature="class#SystemEvents#0;class#SendMessageToWear#0" expanded="false" />
             <element signature="class#StatusEvents#0;class#SendMessageToWear#0" expanded="false" />
@@ -3197,7 +3213,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1039#1040#0" expanded="false" />
+            <element signature="e#1084#1085#0" expanded="false" />
+            <element signature="e#1134#1135#0" expanded="false" />
+            <element signature="e#1166#1167#0" expanded="false" />
+            <element signature="e#1206#1207#0" expanded="false" />
+            <element signature="e#1250#1251#0" expanded="false" />
+            <element signature="e#1299#1300#0" expanded="false" />
+            <element signature="e#1337#1338#0" expanded="false" />
+            <element signature="e#1390#1391#0" expanded="false" />
+            <element signature="e#1443#1444#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3258,6 +3286,8 @@
           <folding>
             <element signature="e#9026#9515#0" expanded="true" />
             <element signature="e#9514#9515#0" expanded="true" />
+            <element signature="e#13790#13903#0" expanded="true" />
+            <element signature="e#13902#13903#0" expanded="true" />
             <element signature="method#loadBitmapFromAsset#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#MusicIDEvents#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#LocaleLoadRunnable#0;class#GracenoteMusicID#0" expanded="false" />
@@ -3295,8 +3325,8 @@
           <caret line="366" column="0" selection-start-line="366" selection-start-column="0" selection-end-line="366" selection-end-column="0" />
           <folding>
             <element signature="class#12340:14354" expanded="false" />
-            <element signature="e#20486#20624#0" expanded="true" />
-            <element signature="e#20623#20624#0" expanded="true" />
+            <element signature="e#20490#20628#0" expanded="true" />
+            <element signature="e#20627#20628#0" expanded="true" />
             <element signature="class#LocaleLoadRunnable#0;class#SendMessageToWear#0" expanded="false" />
             <element signature="class#SystemEvents#0;class#SendMessageToWear#0" expanded="false" />
             <element signature="class#StatusEvents#0;class#SendMessageToWear#0" expanded="false" />
@@ -3311,7 +3341,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1039#1040#0" expanded="false" />
+            <element signature="e#1084#1085#0" expanded="false" />
+            <element signature="e#1134#1135#0" expanded="false" />
+            <element signature="e#1166#1167#0" expanded="false" />
+            <element signature="e#1206#1207#0" expanded="false" />
+            <element signature="e#1250#1251#0" expanded="false" />
+            <element signature="e#1299#1300#0" expanded="false" />
+            <element signature="e#1337#1338#0" expanded="false" />
+            <element signature="e#1390#1391#0" expanded="false" />
+            <element signature="e#1443#1444#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3372,6 +3414,8 @@
           <folding>
             <element signature="e#9026#9515#0" expanded="true" />
             <element signature="e#9514#9515#0" expanded="true" />
+            <element signature="e#13790#13903#0" expanded="true" />
+            <element signature="e#13902#13903#0" expanded="true" />
             <element signature="method#loadBitmapFromAsset#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#MusicIDEvents#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#LocaleLoadRunnable#0;class#GracenoteMusicID#0" expanded="false" />
@@ -3548,14 +3592,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/AlbumDataMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/SendMessageToMobile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3641,7 +3677,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1039#1040#0" expanded="false" />
+            <element signature="e#1084#1085#0" expanded="false" />
+            <element signature="e#1134#1135#0" expanded="false" />
+            <element signature="e#1166#1167#0" expanded="false" />
+            <element signature="e#1206#1207#0" expanded="false" />
+            <element signature="e#1250#1251#0" expanded="false" />
+            <element signature="e#1299#1300#0" expanded="false" />
+            <element signature="e#1337#1338#0" expanded="false" />
+            <element signature="e#1390#1391#0" expanded="false" />
+            <element signature="e#1443#1444#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3653,13 +3701,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/SendMessageToWear.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.0">
+          <caret line="362" column="0" selection-start-line="362" selection-start-column="0" selection-end-line="362" selection-end-column="0" />
+          <folding>
+            <element signature="class#12340:14354" expanded="false" />
+            <element signature="e#20490#20628#0" expanded="true" />
+            <element signature="e#20627#20628#0" expanded="true" />
+            <element signature="class#LocaleLoadRunnable#0;class#SendMessageToWear#0" expanded="false" />
+            <element signature="class#SystemEvents#0;class#SendMessageToWear#0" expanded="false" />
+            <element signature="class#StatusEvents#0;class#SendMessageToWear#0" expanded="false" />
+            <element signature="class#BundleIngestEvents#0;class#SendMessageToWear#0" expanded="false" />
+            <element signature="method#getAssetAsString#0;class#SendMessageToWear#0" expanded="false" />
+            <element signature="method#showError#0;class#SendMessageToWear#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/AlbumDataMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/com/android/zigzag/mubi/gracenote/GracenoteMusicID.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.16">
-          <caret line="376" column="0" selection-start-line="376" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.58147514">
+          <caret line="381" column="0" selection-start-line="381" selection-start-column="0" selection-end-line="381" selection-end-column="0" />
           <folding>
             <element signature="e#9026#9515#0" expanded="true" />
             <element signature="e#9514#9515#0" expanded="true" />
+            <element signature="e#13790#13903#0" expanded="true" />
+            <element signature="e#13902#13903#0" expanded="true" />
             <element signature="method#loadBitmapFromAsset#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#MusicIDEvents#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="class#LocaleLoadRunnable#0;class#GracenoteMusicID#0" expanded="false" />
@@ -3669,24 +3745,6 @@
             <element signature="class#BundleIngestEvents#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="method#getAssetAsString#0;class#GracenoteMusicID#0" expanded="false" />
             <element signature="method#showError#0;class#GracenoteMusicID#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/android/zigzag/mubi/SendMessageToWear.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31903946">
-          <caret line="414" column="19" selection-start-line="414" selection-start-column="19" selection-end-line="414" selection-end-column="19" />
-          <folding>
-            <element signature="class#12340:14354" expanded="false" />
-            <element signature="e#20486#20624#0" expanded="true" />
-            <element signature="e#20623#20624#0" expanded="true" />
-            <element signature="class#LocaleLoadRunnable#0;class#SendMessageToWear#0" expanded="false" />
-            <element signature="class#SystemEvents#0;class#SendMessageToWear#0" expanded="false" />
-            <element signature="class#StatusEvents#0;class#SendMessageToWear#0" expanded="false" />
-            <element signature="class#BundleIngestEvents#0;class#SendMessageToWear#0" expanded="false" />
-            <element signature="method#getAssetAsString#0;class#SendMessageToWear#0" expanded="false" />
-            <element signature="method#showError#0;class#SendMessageToWear#0" expanded="false" />
           </folding>
         </state>
       </provider>
