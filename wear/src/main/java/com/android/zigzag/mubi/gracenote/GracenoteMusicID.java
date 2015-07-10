@@ -157,6 +157,9 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
 	String trackText = "";
 	String nearestAddressText = "";
 
+
+	ImageView logo;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -168,6 +171,7 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
 
 		setContentView(R.layout.main);
 		coverImg = (ImageView) findViewById(R.id.coverImg);
+		logo = (ImageView) findViewById(R.id.logo_wear_onStart);
 
 		albumTitle = (TextView) findViewById(R.id.albumTitle);
 		artist = (TextView) findViewById(R.id.artist);
@@ -358,7 +362,7 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
 	@Override
 	protected void onPause() {
 
-		timer.cancel();
+//		timer.cancel();
         Wearable.NodeApi.removeListener(mGoogleApiClient, nodeListener);
         Wearable.MessageApi.removeListener(mGoogleApiClient, messageListener);
         mGoogleApiClient.disconnect();
@@ -388,7 +392,9 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
 				// Check the data path
 				String path = event.getDataItem().getUri().getPath();
 				if (path.equals(WEARABLE_DATA_PATH)) {
-					dataMap = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
+
+
+                    dataMap = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
 					Log.v(TAG, "DataMap received on watch: " + dataMap);
 
 					albumTitleText = dataMap.getString("albumTitle");
@@ -406,6 +412,7 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
 					runOnUiThread(new Runnable() {
 						@Override
 						public void run() {
+                            logo.setVisibility(View.GONE);
 							albumTitle.setText(albumTitleText);
 							artist.setText(artistText);
 							track.setText(trackText);

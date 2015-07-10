@@ -5,36 +5,55 @@
     android:layout_height="match_parent">
 
 
+
+
     <ImageView android:id="@+id/coverImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/border"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10px">
     <TextView android:id="@+id/artist"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/black" />
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/font_size_artist" />
 
     <TextView android:id="@+id/track"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/black" />
+        android:textColor="@color/very_dark_gray"
+        android:textSize="@dimen/font_size_track"
+        android:textStyle="bold"/>
 
     <TextView android:id="@+id/albumTitle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/black"/>
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/font_size_albumTitle"/>
 
     <TextView android:id="@+id/nearestAddress"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/black" />
+        android:textColor="@color/dark_blue"
+        android:textSize="@dimen/font_size_nearestAddress"
+        android:textStyle="italic"/>
 
-</LinearLayout></RelativeLayout>
+</LinearLayout>
+
+    <ImageView android:id="@+id/logo_wear_onStart"
+        android:layout_width="fill_parent"
+        android:src="@drawable/logo_wear_onstart"
+        android:layout_height="fill_parent" />
+
+
+</RelativeLayout>

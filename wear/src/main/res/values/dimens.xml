@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="font_size_artist">16dp</dimen>
+    <dimen name="font_size_track">20dp</dimen>
+    <dimen name="font_size_albumTitle">16dp</dimen>
+    <dimen name="font_size_nearestAddress">12dp</dimen>
+</resources>

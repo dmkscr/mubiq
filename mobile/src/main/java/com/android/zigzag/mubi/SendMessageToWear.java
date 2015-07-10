@@ -431,7 +431,7 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
                 dataMap.getDataMap().putString("albumTitle", " " + albumTitle);
                 dataMap.getDataMap().putString("artist", " " + artist);
                 dataMap.getDataMap().putString("track", " " + track);
-                dataMap.getDataMap().putString("nearestAddress", " " + nearestAddress);
+                dataMap.getDataMap().putString("nearestAddress", " " + nearestAddress.replaceAll("\\r\\n|\\r|\\n", " "));
 
                 PutDataRequest request = dataMap.asPutDataRequest();
                 PendingResult<DataApi.DataItemResult> pendingResult = Wearable.DataApi
