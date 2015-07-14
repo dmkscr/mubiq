@@ -380,7 +380,8 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
 	@Override
 	public void onDataChanged(DataEventBuffer dataEvents) {
 
-		Log.v(TAG, "onDataChanged");
+        Log.v(TAG, "onDataChanged");
+        Log.d(TAG, "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 
 		DataMap dataMap;
 		for (DataEvent event : dataEvents) {
@@ -410,6 +411,9 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
 					runOnUiThread(new Runnable() {
 						@Override
 						public void run() {
+
+							Log.d(TAG, "testestet");
+
                             logo.setVisibility(View.GONE);
 							albumTitle.setText(albumTitleText);
 							artist.setText(artistText);
@@ -426,6 +430,9 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
 	}
 
 	public Bitmap loadBitmapFromAsset(Asset asset) {
+
+		Log.d(TAG, "loadBitMapFromAsset");
+
 		if (asset == null) {
 			throw new IllegalArgumentException("Asset must be non-null");
 		}

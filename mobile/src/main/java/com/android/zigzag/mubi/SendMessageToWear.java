@@ -259,7 +259,6 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
                     @Override
                     public void run() {
                         Toast.makeText(getApplication(), getString(R.string.peer_disconnected), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getApplication(), getString(R.string.peer_disconnected), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -277,7 +276,6 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
                             Log.d(TAG, "Message from wear received.");
 
                             String result = new String(messageEvent.getData());
-                           // result = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><GNFPX_FP_QUERY VERSION=\"1.0\"><ALGORITHM><NAME>Philips</NAME><VERSION>1.1</VERSION><BLOCK_LENGTH>3</BLOCK_LENGTH><FORMAT>COMPRESSED</FORMAT></ALGORITHM><FP_BLOCKS COUNT=\"2\"><FP_BLOCK TYPE=\"BINARY\" ENCODING=\"BASE64\" COUNT=\"167\" ORDINAL=\"1\" IDENT=\"1\">0DmL1ur3zap6e0e2BFTL7A9rSst88/GvfjTrvF4hOQ3mosF98iCM/9vm1znc6KsxFlyke2S72i9JEKCpMpOdXv+Gfvcnlw0x6Xbgv8+3tdoyOvX7hlr4H+lWaX9g3eK64//C35r7mUc1j6o7sK/6yvVERLiNy26D/wFuW4ndHb+q2lTdKUzIYEqln5T9M6WbVf3ffDtQVpd2uOEttoJ1Cb6q/ld574iu2Tdw8k3rX+d/u+vJ7gP+f1MCkMmJ1fZFChPqKl37Iw7bQ/6nxFa11/G/WOKrPuVDa/y7ZD/uz/O6MaCaX1Zd3y5wbdIV3e3P8utRXdVJECaJQs2IFpvqv+5Xsed5rvQJP6x9HbXtilr2RoWpvLWOp49E4hD7u//J/O363unKwKRK4Kp0zH6jpo37X133fshNafNR5a9rhNQPTvuWedPq7lfX+cXkRCX5sTnYa/25f/0vGtqbiAdm7trxap1IxTcD0y+8txPV//8qA8YFql8kYSbgJwyUUwHK4GFIqplVqHRKfKV5XpTBM2Tlg8E/WNC8PPkyLuR1LLzEysPCKxa1s8wpJEKdFbXqarg9q/y4XZVaLevyY5VQiWeA+CyKWXmFXalS5R1un4FJ4CVKjNUTb5dUfqqKa+KSSN4I5dUoMyFY5G2JEy8ilsRLJmk21eCUJ6oZmRwrVW6yxCux4838hFIpN7OMobIg5U2tV83mGS2xMSnN8PHxAg8r78KgyMpUyB+kvEoe9ZwSAlYls6tA5QYOKUpUtVKGQ7lRmSWi+SE2puQJRTm4VmsZQhnKZeVGeUSIXNHXG0mRcsuGyqxcVMcPc0lLgVUHOZeCOKL85aS1eim/abJywkjlxKd/UqIS3CCShxtFyjsZdnaJa4dirc7NU3L5AQI=</FP_BLOCK><FP_BLOCK TYPE=\"BINARY\" ENCODING=\"BASE64\" COUNT=\"170\" ORDINAL=\"2\" IDENT=\"2\">JtPpZbt1vW3+3I8qvz1F7BKIwU5f41bm142n2zb7Tea1v2zMQO/Vsy5SoA31/qyb1/jCf9DYtdk6k03MgMqla/pJZ/5qNnu4k0uZP9vTvxcQLt3HovWWC0HVzri/uCbWb076S+LJE7ZgcyvaHvD5L887OxPb5n9Hdv2eRcVCSFSKraooMv+g/2WPTi5djra7mGdGxDS//e/tsOnyim4setowgFf9BSrzkCo1DhuJ9czfH7hVD1vzO22RqDaofTvs2FapnR/cQzNeEg6OOPXzOObBbHTzat63XUf1hP7xhyu1IdN0DGH97DX4j08fPGCym1k6rurvjEjta4WTZzGkt2aNLQH9kZ+wvqPFI+3mXKv3rM6Rtt44o6JHaHjcH9/uBByeWpcdtLgw7vb0Y+l6Tub/79q17IPPDxjQDoWcr9ScapzLfA87Yw7wDi5DTcrf2qy+rv34jeo/mBjeqsqOq8mqQS4mpGm8M+V29v1gXmrXYu8qhMl9XTR9E0dUsNjXLoYcNuFL2vy/HQWIdpdfhoZdhtihhBNAuZdzMfdqJD95CfKal/Nyx9ASMZTMRSifot9TdVqKEqBCnvJTN3oekq9CKRLt+cVCjEqwiDWpkHOyojgrgSYA7nIGWfmq4CKSPLnkzhKrzMpKIO/LBMpXHijEajNkxhl+vgIZEOUwhi0yAAkpW412ElKaOuLmbysPQrkqNCsRl1pQoiSAlvcLrLzEncTFcibUrMjSAkvD5xngnK18Jn7YE58RAmveskp2crLeUd2xaxVOuZo/GXSGX0YyZGA6zkohkn/veJGslYasl2hXdVWFlbLaMhxlulbNYOSyxCO2zmrksjZTrqtSx4tVprNrRslrpclBPtDyinxIIjHNyNCoQ3RK4iaGzRkUSL06uViqk0R+</FP_BLOCK></FP_BLOCKS></GNFPX_FP_QUERY>";
                             identifyFingerprint(result);
                         }
                     });
@@ -437,6 +435,8 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
                     dataMap.getDataMap().putAsset("coverImg", asset);
                 }
 
+                Log.d(TAG, "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+
                 dataMap.getDataMap().putString("albumTitle", " " + albumTitle);
                 dataMap.getDataMap().putString("artist", " " + artist);
                 dataMap.getDataMap().putString("track", " " + track);
@@ -495,6 +495,7 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
             }
         });
 
+        sendingResult();
 
     }
 
@@ -504,6 +505,8 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
     public void sendingResult() {
 
         Log.e(TAG, "sendingResult");
+
+        Log.d(TAG, "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
 
         AlbumDataMap albumDataMap = new AlbumDataMap(albumTitle,artist,track,nearestAddress);
 
@@ -994,16 +997,10 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List list, ParseException e) {
                 if (e == null) {
-                    Log.d("Posts from Current User", "query done list of all posts " + list);
 
                     ArrayList<MubiqPost> post = (ArrayList<MubiqPost>) list;
 
-
                     final MatchAdapter adapter = new MatchAdapter(SendMessageToWear.this, post);
-
-                    Log.d("Post", "setMatchList done list  size : " + post.size());
-
-                    Log.d("Post", "setMatchList done adapter " + adapter);
 
                     runOnUiThread(new Runnable() {
                         @Override
