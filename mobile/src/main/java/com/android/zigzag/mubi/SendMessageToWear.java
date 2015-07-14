@@ -2,7 +2,6 @@ package com.android.zigzag.mubi;
 
 import android.app.Activity;
 import android.app.PendingIntent;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,7 +21,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -72,10 +72,14 @@ import com.gracenote.gnsdk.IGnCancellable;
 import com.gracenote.gnsdk.IGnLookupLocalStreamIngestEvents;
 import com.gracenote.gnsdk.IGnStatusEvents;
 import com.gracenote.gnsdk.IGnSystemEvents;
+import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -88,8 +92,10 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -152,6 +158,8 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
 
     private Activity activity;
     private Context context;
+    private ListView matchList;
+    private MatchAdapter matchAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,6 +169,9 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
         activity = this;
         context = this.getApplicationContext();
         handler = new Handler();
+
+        matchList = (ListView) findViewById(R.id.match_list);
+
 
         // check the client id and tag have been set
         if ((gnsdkClientId == null) || (gnsdkClientTag == null)) {
@@ -395,10 +406,8 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
 
                    } else{
                         Log.v(TAG, "duplicated track, skipping");
-                    }
-
+                   }
                 }
-
             }
 
         } catch (GnException e) {
@@ -482,11 +491,11 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
         post.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
-                // tbd
+                setMatchList();
             }
         });
 
-        sendingResult();
+
     }
 
     /**
@@ -499,8 +508,8 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
         AlbumDataMap albumDataMap = new AlbumDataMap(albumTitle,artist,track,nearestAddress);
 
         if (mGoogleApiClient.isConnected()) {
-            new getBitmapFromUrl().execute(coverArtUrl);
 
+            new getBitmapFromUrl().execute(coverArtUrl);
 
             Log.e(TAG, "sendingResult end");
 
@@ -527,6 +536,8 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
     @Override
     protected void onResume() {
         super.onResume();
+
+        setMatchList();
 
         // Check is Google Play Services available
         int connectionResult = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
@@ -968,4 +979,45 @@ public class SendMessageToWear extends ActionBarActivity implements ResultCallba
 //            mRemoveGeofencesButton.setEnabled(false);
         }
     }
+
+
+
+
+
+
+
+    private void  setMatchList() {
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Posts");
+        query.whereEqualTo("user", ParseUser.getCurrentUser());
+        query.orderByDescending("createdAt");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List list, ParseException e) {
+                if (e == null) {
+                    Log.d("Posts from Current User", "query done list of all posts " + list);
+
+                    ArrayList<MubiqPost> post = (ArrayList<MubiqPost>) list;
+
+
+                    final MatchAdapter adapter = new MatchAdapter(SendMessageToWear.this, post);
+
+                    Log.d("Post", "setMatchList done list  size : " + post.size());
+
+                    Log.d("Post", "setMatchList done adapter " + adapter);
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            matchList.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                        }
+                    });
+
+                } else {
+                    Log.e("Posts from Current User", "query done error " + e);
+                }
+            }
+        });
+    }
+
 }

@@ -17,13 +17,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="10px">
+        android:layout_margin="5dp"
+        android:padding="3dp" >
+
     <TextView android:id="@+id/artist"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/dark_gray"
-        android:textSize="@dimen/font_size_artist" />
+        android:textSize="@dimen/font_size_artist"
+        android:singleLine="true" />
 
     <TextView android:id="@+id/track"
         android:layout_width="fill_parent"
@@ -31,14 +34,15 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/very_dark_gray"
         android:textSize="@dimen/font_size_track"
-        android:textStyle="bold"/>
+        android:singleLine="true" />
 
     <TextView android:id="@+id/albumTitle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/dark_gray"
-        android:textSize="@dimen/font_size_albumTitle"/>
+        android:textSize="@dimen/font_size_albumTitle"
+        android:singleLine="true" />
 
     <TextView android:id="@+id/nearestAddress"
         android:layout_width="fill_parent"
@@ -46,11 +50,11 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/dark_blue"
         android:textSize="@dimen/font_size_nearestAddress"
-        android:textStyle="italic"/>
+        android:singleLine="true" />
 
 </LinearLayout>
 
-    <ImageView android:id="@+id/logo_wear_onStart"
+    <ImageView android:id="@+id/logo_wear_onstart"
         android:layout_width="fill_parent"
         android:src="@drawable/logo_wear_onstart"
         android:layout_height="fill_parent" />

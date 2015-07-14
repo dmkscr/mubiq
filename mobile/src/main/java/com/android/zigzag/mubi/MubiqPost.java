@@ -33,7 +33,7 @@ public class MubiqPost extends ParseObject {
   public void setUser(ParseUser value) { put("user", value); }
 
 
-  public ParseUser getCoverArtUrl() { return getParseUser("coverArtUrl"); }
+  public String getCoverArtUrl() { return getString("coverArtUrl"); }
 
   public void setCoverArtUrl(String value) { put("coverArtUrl", value); }
 

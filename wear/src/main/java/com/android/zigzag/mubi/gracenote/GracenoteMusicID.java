@@ -123,7 +123,7 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
 	static final String                     gnsdkClientId 			= "9148416";
 	static final String                     gnsdkClientTag 			= "EA1C43BD1FFE51ED7ECF272A2F04DA45";
 	static final String                     gnsdkLicenseFilename 	= "license.txt";
-	//private static final String             TAG				        = "Mubiq";
+	private static final String             TAG				        = "Mubiq";
 	
 	private Activity                        activity;
 	private Context                         context;
@@ -171,7 +171,7 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
 
 		setContentView(R.layout.main);
 		coverImg = (ImageView) findViewById(R.id.coverImg);
-		logo = (ImageView) findViewById(R.id.logo_wear_onStart);
+		logo = (ImageView) findViewById(R.id.logo_wear_onstart);
 
 		albumTitle = (TextView) findViewById(R.id.albumTitle);
 		artist = (TextView) findViewById(R.id.artist);
@@ -373,8 +373,6 @@ public class GracenoteMusicID extends Activity implements DataApi.DataListener {
             timer.cancel();
 		}
 	}
-
-	private String TAG = "Mubiq";
 
 	private static final String WEARABLE_DATA_PATH = "/albumDetails";
 

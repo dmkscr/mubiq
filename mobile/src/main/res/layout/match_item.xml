@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+    android:padding="6dip"
+    android:layout_height="?android:attr/listPreferredItemHeight">
+
+    <ImageView
+        android:id="@+id/listview_cover"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="Gracenote Music Identification Details"
+        android:paddingRight="6dip"
+        android:src="@drawable/logo_wear_onstart" />
+
+
+    <LinearLayout
+        android:layout_toRightOf="@+id/listview_cover"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/listview_artist"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="No artist name available"
+            android:textSize="12sp" />
+
+
+        <TextView
+            android:id="@+id/listview_track"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="No track name available"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/listview_albumTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="No album name available"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+
+
+
+
+
+
+    <TextView
+        android:id="@+id/listview_nearestAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:text="No location available"
+        android:textSize="12sp" />
+
+
+</RelativeLayout>

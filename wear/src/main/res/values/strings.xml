@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mubi</string>
+    <string name="app_name">Mubiq</string>
 
     <string name="received_message">Message from mobile.</string>
     <string name="received_messages">Received messages:</string>
